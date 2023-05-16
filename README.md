@@ -5,6 +5,14 @@ Guests looking to make their own listings and reviews can sign up and begin usin
 
 Live Link: Not implemented at the moment
 
-Links below for the project Wiki
-- Features
+### Links below for the project Wiki
+- [Features](https://github.com/anwersaad0/Etsy-Clone/wiki/Project-Features)
 - DB Schema
+
+### Built Using
+- Python
+- JavaScript
+- Flask
+- React
+- Redux
+- PostgreSQL
