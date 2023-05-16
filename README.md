@@ -7,7 +7,7 @@ Live Link: Not implemented at the moment
 
 ### Links below for the project Wiki
 - [Features](https://github.com/anwersaad0/Etsy-Clone/wiki/Project-Features)
-- DB Schema
+- [DB Schema](https://github.com/anwersaad0/Etsy-Clone/blob/main/EtsyCloneDBD.png)
 
 ### Built Using
 - Python
