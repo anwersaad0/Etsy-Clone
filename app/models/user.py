@@ -14,10 +14,10 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    first_name = db.Column(db.String(30), nullable=False)
-    last_name = db.Column(db.String(30), nullable=False)
+    #first_name = db.Column(db.String(30))
+    #last_name = db.Column(db.String(30))
 
-    profile_pic = db.Column(db.String(255))
+    #profile_pic = db.Column(db.String(255))
 
     items = db.relationship('Item', back_populates='user', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates='user', cascade="all, delete-orphan")
