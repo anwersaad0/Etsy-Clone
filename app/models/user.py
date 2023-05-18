@@ -14,8 +14,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    #first_name = db.Column(db.String(30))
-    #last_name = db.Column(db.String(30))
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
 
     #profile_pic = db.Column(db.String(255))
 
