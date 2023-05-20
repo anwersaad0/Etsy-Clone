@@ -1,7 +1,36 @@
 .profile-dropdown {
-  position: absolute;
+  display: flex;
+  flex-flow: column;
+  list-style-type: none;
+  position: fixed;
+  right: 0px;
+  padding: 4px;
+  background-color: rgb(112, 112, 112);
+  border: 2px solid rgb(87, 207, 87);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  border-radius: 8px;
+  text-align: center;
+  min-height: 75px;
+  min-width: 116px;
+  margin-right: 24px;
+  margin-top: 2px;
 }
 
 .hidden {
   display: none;
+}
+
+.nav-bar {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(112, 112, 112);
+  margin: 0px;
+  padding: 14px 0px;
+  padding-bottom: 12px;
+  border-bottom: 6px solid rgb(87, 207, 87);
+  border-image: linear-gradient(45deg, rgb(87, 207, 87), rgb(207, 115, 87)) 1;
+  height: 76px;
 }

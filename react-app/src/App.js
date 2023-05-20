@@ -6,6 +6,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AllItems from "./components/AllItems";
+import ItemPage from "./components/ItemPage";
+import ItemFormPage from "./components/CreateItemForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +27,13 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/">
+          <Route exact path="/items/new">
+            <ItemFormPage />
+          </Route>
+          <Route exact path="/items/:itemId">
+            <ItemPage />
+          </Route>
+          <Route exact path="/items">
             <AllItems />
           </Route>
         </Switch>

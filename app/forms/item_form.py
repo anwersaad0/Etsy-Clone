@@ -16,5 +16,3 @@ class NewItem(FlaskForm):
 
     price = FloatField("Item Price", validators=[DataRequired()])
 
-    submit = SubmitField("Submit")
-

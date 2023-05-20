@@ -25,11 +25,15 @@ def item(id):
 @login_required
 def add_item():
     form = NewItem()
+
+    #print('============= Route has been hit =================')
+
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+        #print('================== VALIDATING ================')
         item = Item(name = form.data['name'],
-                    owner_id = current_user.id,
+                    user_id = current_user.id,
                     price = form.data['price'],
                     description = form.data['description'],
                     rating = 0
