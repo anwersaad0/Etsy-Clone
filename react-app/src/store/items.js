@@ -76,6 +76,24 @@ export const createItemThunk = (item) => async (dispatch) => {
     }
 }
 
+export const editItemThunk = (item) => async (dispatch) => {
+    const itemId = parseInt(item.get('id'));
+    console.log('item id ', itemId);
+
+    const res = await fetch(`/api/items/edit/${itemId}`, {
+        method: 'PUT',
+        body: item
+    });
+
+    if (res.ok) {
+        const item = await res.json();
+        dispatch(editItemAct(item));
+        return item;
+    } else {
+        return ("editItem response not ok");
+    }
+}
+
 //reducer
 
 const initState = {};
@@ -93,6 +111,10 @@ function itemReducer(state = initState, action) {
             newState[action.item.id] = action.item;
             return newState;
         case CREATE_ITEM:
+            newState = {...state};
+            newState[action.item.id] = action.item;
+            return newState;
+        case EDIT_ITEM:
             newState = {...state};
             newState[action.item.id] = action.item;
             return newState;

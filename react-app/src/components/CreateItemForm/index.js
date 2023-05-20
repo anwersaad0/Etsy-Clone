@@ -21,7 +21,7 @@ function ItemFormPage() {
 
     const [valErrs, setValErrs] = useState([]);
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (valErrs.length) return alert("Your listing has errors, cannot submit!");
