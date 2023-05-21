@@ -37,6 +37,15 @@ function ItemPage() {
             <div>
                 <p>{item.description}</p>
             </div>
+
+            <div>
+                <p>Rating: {item.rating}</p>
+            </div>
+
+            <div>
+                <h2>Reviews</h2>
+                <div></div>
+            </div>
         </div>
     )
 }

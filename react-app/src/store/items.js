@@ -1,4 +1,5 @@
 const GET_ALL_ITEMS = "/GET_ALL_ITEMS";
+const GET_USER_ITEMS = "/GET_USER_ITEMS";
 const GET_ONE_ITEM = "/GET_ONE_ITEM";
 const CREATE_ITEM = "/CREATE_ITEM";
 const EDIT_ITEM = "/EDIT_ITEM";
@@ -9,6 +10,13 @@ const DELETE_ITEM = "/DELETE_ITEM";
 const getAllItemsAct = (items) => {
     return {
         type: GET_ALL_ITEMS,
+        items
+    }
+}
+
+const getUserItemsAct = (items) => {
+    return {
+        type: GET_USER_ITEMS,
         items
     }
 }
@@ -51,6 +59,17 @@ export const getAllItemsThunk = () => async (dispatch) => {
         dispatch(getAllItemsAct(items));
     } else {
         return ("getAllItems response not ok");
+    }
+}
+
+export const getUserItemsThunk = () => async(dispatch) => {
+    const res = await fetch('/api/items/current');
+
+    if (res.ok) {
+        const { items } = await res.json();
+        dispatch(getUserItemsAct(items));
+    } else {
+        return ("getUserItems response not ok");
     }
 }
 
@@ -124,7 +143,13 @@ function itemReducer(state = initState, action) {
         case GET_ALL_ITEMS:
             newState = {...state};
             action.items.forEach(item => {
-                newState[item.id] = item
+                newState[item.id] = item;
+            });
+            return newState;
+        case GET_USER_ITEMS:
+            newState = {...state};
+            action.items.forEach(item => {
+                newState[item.id] = item;
             });
             return newState;
         case GET_ONE_ITEM:

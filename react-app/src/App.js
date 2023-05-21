@@ -9,6 +9,7 @@ import AllItems from "./components/AllItems";
 import ItemPage from "./components/ItemPage";
 import ItemFormPage from "./components/CreateItemForm";
 import EditItemFormPage from "./components/EditItemForm";
+import UserItems from "./components/UserItems";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route exact path="/items/new">
             <ItemFormPage />
+          </Route>
+          <Route exact path="/items/current">
+            <UserItems />
           </Route>
           <Route exact path="/items/:itemId">
             <ItemPage />

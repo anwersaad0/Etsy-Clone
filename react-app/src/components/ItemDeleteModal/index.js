@@ -15,7 +15,7 @@ function ItemDeleteModal({itemId}) {
 
         const deletedItem = await dispatch(deleteItemThunk(itemId));
         if (deletedItem.message === "Delete Successful") {
-            history.push("/items");
+            history.push("/items/current");
             closeModal();
         }
     }
@@ -30,3 +30,5 @@ function ItemDeleteModal({itemId}) {
         </div>
     )
 }
+
+export default ItemDeleteModal;
