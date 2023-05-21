@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import AllItems from "./components/AllItems";
 import ItemPage from "./components/ItemPage";
 import ItemFormPage from "./components/CreateItemForm";
+import EditItemFormPage from "./components/EditItemForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/items/:itemId">
             <ItemPage />
+          </Route>
+          <Route exact path="/items/:itemId/edit">
+            <EditItemFormPage />
           </Route>
           <Route exact path="/items">
             <AllItems />

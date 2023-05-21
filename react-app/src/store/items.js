@@ -2,6 +2,7 @@ const GET_ALL_ITEMS = "/GET_ALL_ITEMS";
 const GET_ONE_ITEM = "/GET_ONE_ITEM";
 const CREATE_ITEM = "/CREATE_ITEM";
 const EDIT_ITEM = "/EDIT_ITEM";
+const DELETE_ITEM = "/DELETE_ITEM";
 
 //actions
 
@@ -33,6 +34,13 @@ const editItemAct = (item) => {
     }
 }
 
+const deleteItemAct = (itemId) => {
+    return {
+        type: DELETE_ITEM,
+        itemId
+    }
+}
+
 //thunks
 
 export const getAllItemsThunk = () => async (dispatch) => {
@@ -52,7 +60,7 @@ export const getOneItemThunk = (itemId) => async (dispatch) => {
     if (res.ok) {
         const item = await res.json();
         dispatch(getOneItemAct(item));
-        console.log('from thunk', item);
+        //console.log('from thunk', item);
         return item;
     } else {
         return ("getOneItem response not ok");
@@ -76,9 +84,9 @@ export const createItemThunk = (item) => async (dispatch) => {
     }
 }
 
-export const editItemThunk = (item) => async (dispatch) => {
-    const itemId = parseInt(item.get('id'));
-    console.log('item id ', itemId);
+export const editItemThunk = (item, itemId) => async (dispatch) => {
+    //const itemId = parseInt(item.get('id'));
+    console.log('item id ', item);
 
     const res = await fetch(`/api/items/edit/${itemId}`, {
         method: 'PUT',
@@ -91,6 +99,19 @@ export const editItemThunk = (item) => async (dispatch) => {
         return item;
     } else {
         return ("editItem response not ok");
+    }
+}
+
+export const deleteItemThunk = (itemId) => async (dispatch) => {
+    const res = await fetch(`/api/items/delete/${itemId}`, {
+        method: "DELETE"
+    });
+
+    if (res.ok) {
+        dispatch(deleteItemAct(itemId));
+        return {'message': 'Delete Successful'};
+    } else {
+        return ("Item could not be deleted");
     }
 }
 
@@ -117,6 +138,10 @@ function itemReducer(state = initState, action) {
         case EDIT_ITEM:
             newState = {...state};
             newState[action.item.id] = action.item;
+            return newState;
+        case DELETE_ITEM:
+            newState = {...state};
+            delete newState[action.itemId];
             return newState;
         default:
             return state
