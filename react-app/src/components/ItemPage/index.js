@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneItemThunk } from "../../store/items";
 import { getOneUserThunk } from "../../store/users";
+import ItemReviews from "../ItemReviews";
 
 
 function ItemPage() {
@@ -20,8 +21,8 @@ function ItemPage() {
 
     if (!item) return null;
 
-    console.log('item ', item);
-    console.log(typeof item?.userId);
+    //console.log('item ', item);
+    //console.log(typeof item?.userId);
 
     return (
         <div>
@@ -44,7 +45,9 @@ function ItemPage() {
 
             <div>
                 <h2>Reviews</h2>
-                <div></div>
+                <div>
+                    <ItemReviews />
+                </div>
             </div>
         </div>
     )
