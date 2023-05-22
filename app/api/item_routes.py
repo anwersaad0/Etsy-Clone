@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from ..models import User, Item, db
-from ..forms import NewItem, EditItem
+from ..models import User, Item, Review, db
+from ..forms import NewItem, EditItem, NewReview
 
 item_routes = Blueprint('items', __name__)
 
@@ -16,10 +16,37 @@ def user_items():
     items = Item.query.filter(Item.user_id == current_user.id)
     return {'items': [item.to_dict() for item in items]}
 
+@item_routes.route('/<int:id>/reviews')
+def item_reviews(id):
+    item = Item.query.get(id)
+    reviews = Review.query.filter(Review.item_id == item.id)
+    return {'reviews': [review.to_dict() for review in reviews]}
+
 @item_routes.route('/<int:id>')
 def item(id):
     item = Item.query.get(id)
     return item.to_dict()
+
+@item_routes.route('/<int:id>/reviews', methods=['POST'])
+@login_required
+def add_item_review(id):
+    item = Item.query.get(id)
+
+    form = NewReview()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        review = Review(review = form.data['review'],
+                        rating = form.data['rating'],
+                        item_id = item.id,
+                        user_id = current_user.id
+                        )
+        
+        db.session.add(review)
+        db.session.commit()
+        return review.to_dict()
+    
+    return {"errors": form.errors}
 
 @item_routes.route('/new', methods=['POST'])
 @login_required

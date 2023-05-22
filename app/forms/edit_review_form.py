@@ -10,6 +10,6 @@ def review_exists(form, field):
     if review:
         raise ValidationError("This review already exists!")
 
-class NewReview(FlaskForm):
+class EditReview(FlaskForm):
     review = StringField("Write Review Here", validators=[DataRequired()])
     rating = IntegerField("Rating", validators=[DataRequired()])
