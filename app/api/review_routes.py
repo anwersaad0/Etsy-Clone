@@ -9,3 +9,5 @@ review_routes = Blueprint('reviews', __name__)
 @login_required
 def edit_review(id):
     review = Review.query.get(id)
+
+#@review_routes.route('')

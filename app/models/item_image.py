@@ -3,7 +3,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.schema import ForeignKey
 
 class ItemImage(db.Model):
-    __tablename__ = "itemImages"
+    __tablename__ = "itemimages"
 
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String(255), nullable=False)
