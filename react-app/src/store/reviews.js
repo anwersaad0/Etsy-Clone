@@ -1,5 +1,6 @@
 const GET_REVIEWS = "/GET_REVIEWS";
 const CREATE_REVIEW = "/CREATE_REVIEW";
+const DELETE_REVIEW = "/DELETE_REVIEW";
 
 //actions
 
@@ -14,6 +15,13 @@ const createReviewAct = (rev) => {
     return {
         type: CREATE_REVIEW,
         rev
+    }
+}
+
+const deleteReviewAct = (revId) => {
+    return {
+        type: DELETE_REVIEW,
+        revId
     }
 }
 
@@ -47,6 +55,19 @@ export const createReviewThunk = (itemId, rev) => async (dispatch) => {
     }
 }
 
+export const deleteReviewThunk = (revId) => async (dispatch) => {
+    const res = await fetch(`/api/reviews/delete/${revId}`, {
+        method: 'DELETE'
+    });
+
+    if (res.ok) {
+        dispatch(deleteReviewAct(revId));
+        return {'message': 'Delete Successful'};
+    } else {
+        return ("Review could not be deleted");
+    }
+}
+
 //reducer
 const initState = {};
 function reviewReducer(state = initState, action) {
@@ -63,6 +84,10 @@ function reviewReducer(state = initState, action) {
         case CREATE_REVIEW:
             newState = {...state};
             newState[action.rev.id] = action.rev;
+            return newState;
+        case DELETE_REVIEW:
+            newState = {...state};
+            delete newState[action.revId];
             return newState;
         default:
             return state;
