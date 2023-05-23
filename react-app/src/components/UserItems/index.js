@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserItemsThunk } from "../../store/items";
 import ItemDeleteModal from "../ItemDeleteModal";
 import OpenModalButton from "../OpenModalButton";
+import { useHistory } from "react-router-dom";
 
 
 function UserItems() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(getUserItemsThunk());
@@ -26,6 +28,10 @@ function UserItems() {
                 <div>
                     <div>
                         <p>{name}</p>
+                    </div>
+
+                    <div>
+                        <button onClick={() => history.push(`/items/${id}/edit`)}>Edit Listing</button>
                         <OpenModalButton buttonText="Delete Listing" modalComponent={<ItemDeleteModal itemId={id} />} />
                     </div>
                 </div>

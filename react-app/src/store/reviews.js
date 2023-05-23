@@ -1,5 +1,6 @@
 const GET_REVIEWS = "/GET_REVIEWS";
 const CREATE_REVIEW = "/CREATE_REVIEW";
+const EDIT_REVIEW = "/EDIT_REVIEW";
 const DELETE_REVIEW = "/DELETE_REVIEW";
 
 //actions
@@ -14,6 +15,13 @@ const getReviewsAct = (revs) => {
 const createReviewAct = (rev) => {
     return {
         type: CREATE_REVIEW,
+        rev
+    }
+}
+
+const editReviewAct = (rev) => {
+    return {
+        type: EDIT_REVIEW,
         rev
     }
 }
@@ -53,6 +61,10 @@ export const createReviewThunk = (itemId, rev) => async (dispatch) => {
     } else {
         return ("createReview response not ok")
     }
+}
+
+export const editReviewThunk = (rev, revId) => async (dispatch) => {
+    
 }
 
 export const deleteReviewThunk = (revId) => async (dispatch) => {

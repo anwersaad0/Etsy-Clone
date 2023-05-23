@@ -56,10 +56,13 @@ function ItemReviews() {
         <div>
             {addRevBtn}
 
+            {!revs.length && (<p>Be the first to review this listing</p>)}
+
             {revs && reverseRevs?.map(rev => (
                 <div>
                     <p>By {rev?.userId}</p>
                     <p>{rev?.review}</p>
+                    <p>Rating: {rev?.rating}</p>
 
                     {(sessionUser) && (rev.userId === sessionUser.id) && (
                         <div>
