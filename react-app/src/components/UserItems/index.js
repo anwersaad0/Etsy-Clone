@@ -4,6 +4,7 @@ import { getUserItemsThunk } from "../../store/items";
 import ItemDeleteModal from "../ItemDeleteModal";
 import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 function UserItems() {
@@ -16,6 +17,8 @@ function UserItems() {
 
     const items = useSelector(state => Object.values(state.items));
     const sessionUser = useSelector(state => state.session.user);
+
+    console.log(items);
     
     if (!items) {
         return <h1>No current user songs found</h1>
@@ -25,9 +28,9 @@ function UserItems() {
         <div>
             <h1>{sessionUser.username}'s Listings</h1>
             {items?.map(({name, id}) => (
-                <div>
+                <div key={id}>
                     <div>
-                        <p>{name}</p>
+                        <NavLink exact to={`/items/${id}`}>{name}</NavLink>
                     </div>
 
                     <div>

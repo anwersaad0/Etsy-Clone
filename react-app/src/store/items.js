@@ -62,7 +62,7 @@ export const getAllItemsThunk = () => async (dispatch) => {
     }
 }
 
-export const getUserItemsThunk = () => async(dispatch) => {
+export const getUserItemsThunk = () => async (dispatch) => {
     const res = await fetch('/api/items/current');
 
     if (res.ok) {
@@ -147,11 +147,11 @@ function itemReducer(state = initState, action) {
             });
             return newState;
         case GET_USER_ITEMS:
-            newState = {...state};
-            action.items.forEach(item => {
-                newState[item.id] = item;
-            });
-            return newState;
+            const userState = action.items.reduce( (userItems, item) => {
+                userItems[item.id] = item;
+                return userItems;
+            }, {});
+            return {...userState};
         case GET_ONE_ITEM:
             newState = {...state};
             newState[action.item.id] = action.item;
