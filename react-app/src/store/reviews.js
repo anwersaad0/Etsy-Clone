@@ -64,7 +64,18 @@ export const createReviewThunk = (itemId, rev) => async (dispatch) => {
 }
 
 export const editReviewThunk = (rev, revId) => async (dispatch) => {
-    
+    const res = await fetch(`/api/reviews/${revId}`, {
+        method: 'PUT',
+        body: rev
+    });
+
+    if (res.ok) {
+        const rev = await res.json();
+        dispatch(editReviewAct(rev));
+        return rev;
+    } else {
+        return ("editReview response not ok");
+    }
 }
 
 export const deleteReviewThunk = (revId) => async (dispatch) => {
@@ -94,6 +105,10 @@ function reviewReducer(state = initState, action) {
             console.log('newState', newState)
             return newState;
         case CREATE_REVIEW:
+            newState = {...state};
+            newState[action.rev.id] = action.rev;
+            return newState;
+        case EDIT_REVIEW:
             newState = {...state};
             newState[action.rev.id] = action.rev;
             return newState;

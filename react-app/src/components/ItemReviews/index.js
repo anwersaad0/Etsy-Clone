@@ -6,6 +6,7 @@ import { getOneItemThunk } from "../../store/items";
 import CreateReviewModal from "../CreateReviewModal";
 import OpenModalButton from "../OpenModalButton";
 import ReviewDeleteModal from "../DeleteReviewModal";
+import ReviewEditModal from "../EditReviewModal";
 
 
 function ItemReviews() {
@@ -66,7 +67,8 @@ function ItemReviews() {
 
                     {(sessionUser) && (rev.userId === sessionUser.id) && (
                         <div>
-                               <OpenModalButton buttonText="Delete" modalComponent={<ReviewDeleteModal revId={rev.id} />} />
+                            <OpenModalButton buttonText="Edit" modalComponent={<ReviewEditModal revId={rev.id} rev={rev} />} />
+                            <OpenModalButton buttonText="Delete" modalComponent={<ReviewDeleteModal revId={rev.id} />} />
                         </div>
                     )}
                 </div>

@@ -64,7 +64,7 @@ function CreateReviewModal({itemId}) {
                 </div>
 
                 <div>
-                    <button type="submit">Submit Review</button>
+                    <button disabled={(!revText.length || !rating) ? true : false} type="submit">Submit Review</button>
                 </div>
             </form>
         </div>
