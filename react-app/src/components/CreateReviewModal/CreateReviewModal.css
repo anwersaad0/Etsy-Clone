@@ -1,0 +1,11 @@
+.star-input {
+    display: flex;
+}
+
+.star-input .empty {
+    color: lightgray;
+}
+
+.star-input .filled {
+    color: orange;
+}

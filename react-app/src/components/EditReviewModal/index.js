@@ -12,10 +12,11 @@ function ReviewEditModal({revId, rev}) {
 
     const {closeModal} = useModal();
 
-    console.log(revId);
+    //console.log(revId);
 
     const [revText, setRevText] = useState('');
     const [rating, setRating] = useState(0);
+    const [activeRating, setActiveRating] = useState(rating);
 
     const [valErrs, setValErrs] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -29,7 +30,7 @@ function ReviewEditModal({revId, rev}) {
         e.preventDefault();
 
         setHasSubmitted(true);
-        if (valErrs.length) return alert("Your edit has errors, cannot submit!");
+        if (valErrs.length) return;
 
         const formData = new FormData();
         formData.append('review', revText);
@@ -51,8 +52,12 @@ function ReviewEditModal({revId, rev}) {
     useEffect(() => {
         const valErrs = [];
 
-        if (revText.length > 255) {
+        if (!revText.length) {
+            valErrs.push("Please write a review of the item");
+        } else if (revText.length > 255) {
             valErrs.push("Review exceeds the character limit (255)")
+        } else if (revText.length < 10) {
+            valErrs.push("Review must be at least 10 characters");
         }
 
         setValErrs(valErrs);
@@ -86,19 +91,26 @@ function ReviewEditModal({revId, rev}) {
                     ></textarea>
                 </div>
 
-                <div>
-                    <label>Rating:</label>
-                    <input
-                        type="number"
-                        name="rating"
-                        onChange={e => setRating(e.target.value)}
-                        value={rating}
-                        required = {true}
-                    ></input>
+                <div className="star-input">
+                    <div onClick={() => setRating(1)} onMouseEnter={() => setActiveRating(1)} onMouseLeave={() => setActiveRating(rating)} className={(activeRating >= 1) ? "filled" : "empty"}>
+                        <i className="fas fa-star" />
+                    </div>
+                    <div onClick={() => setRating(2)} onMouseEnter={() => setActiveRating(2)} onMouseLeave={() => setActiveRating(rating)} className={(activeRating >= 2) ? "filled" : "empty"}>
+                        <i className="fas fa-star" />
+                    </div>
+                    <div onClick={() => setRating(3)} onMouseEnter={() => setActiveRating(3)} onMouseLeave={() => setActiveRating(rating)} className={(activeRating >= 3) ? "filled" : "empty"}>
+                        <i className="fas fa-star" />
+                    </div>
+                    <div onClick={() => setRating(4)} onMouseEnter={() => setActiveRating(4)} onMouseLeave={() => setActiveRating(rating)} className={(activeRating >= 4) ? "filled" : "empty"}>
+                        <i className="fas fa-star" />
+                    </div>
+                    <div onClick={() => setRating(5)} onMouseEnter={() => setActiveRating(5)} onMouseLeave={() => setActiveRating(rating)} className={(activeRating >= 5) ? "filled" : "empty"}>
+                        <i className="fas fa-star" />
+                    </div>
                 </div>
 
                 <div>
-                    <button disabled={(revText.length < 10 || !rating || rating < 1 || rating > 5) ? true : false} type="submit">Resubmit Review</button>
+                    <button disabled={(!rating) ? true: false} type="submit">Resubmit Review</button>
                 </div>
             </form>
         </div>

@@ -43,13 +43,20 @@ function EditItemFormPage() {
     useEffect(() => {
         const valErrs = [];
 
-        if (!name.length) valErrs.push("Please enter the item name");
-        if (!price) valErrs.push("Please enter a valid item price");
+        if (!name.length) {
+            valErrs.push("Please enter the item name");
+        } else if (name.length > 50) {
+            valErrs.push("Name cannot exceed the 50 character limit");
+        }
+
+        if (!price || price <= 0) valErrs.push("Please enter a valid item price");
 
         if (!description.length) {
             valErrs.push("Please enter a description");
         } else if (description.length < 30) {
             valErrs.push("Description must be 30 characters or longer");
+        } else if (description.length > 800) {
+            valErrs.push("Description cannot exceed the 800 character limit");
         }
 
         setValErrs(valErrs);
@@ -61,7 +68,7 @@ function EditItemFormPage() {
         e.preventDefault();
 
         setHasSubmitted(true);
-        if (valErrs.length) return alert("Your edit has errors, cannot submit!");
+        if (valErrs.length) return;
 
         const formData = new FormData();
         formData.append('name', name);
@@ -111,6 +118,8 @@ function EditItemFormPage() {
                     <input
                         type="number"
                         name="price"
+                        min="0"
+                        step="0.01"
                         onChange={e => setPrice(e.target.value)}
                         value={price}
                         required={true}

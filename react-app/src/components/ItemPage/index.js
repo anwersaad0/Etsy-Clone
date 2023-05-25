@@ -14,17 +14,10 @@ function ItemPage() {
     const item = useSelector((state) => state.items[itemId]);
     const user = useSelector((state) => state.users[item?.userId]);
 
-    // useEffect(() => {
-    //     dispatch(getOneItemThunk(itemId));
-    //     dispatch(getOneUserThunk(item?.userId));
-    // }, [itemId, item?.userId, item.rating, dispatch]);
-
     useEffect(() => {
-        (async() => {
-            await dispatch(getOneItemThunk(itemId));
-            await dispatch(getOneUserThunk(item?.userId));
-        })();
-    }, [dispatch]);
+        dispatch(getOneItemThunk(itemId));
+        dispatch(getOneUserThunk(item?.userId));
+    }, [itemId, item?.userId, dispatch]);
 
     if (!item) return null;
 
