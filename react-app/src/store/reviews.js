@@ -102,7 +102,7 @@ function reviewReducer(state = initState, action) {
             action.revs.forEach(review => {
                 newState[review.id] = review;
             });
-            console.log('newState', newState)
+            // console.log('newState', newState)
             return newState;
         case CREATE_REVIEW:
             newState = {...state};

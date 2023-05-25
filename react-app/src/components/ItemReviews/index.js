@@ -24,7 +24,7 @@ function ItemReviews() {
     const item = useSelector(state => state.items[itemId]);
 
     const revs = useSelector(state => Object.values(state.reviews));
-    const reverseRevs = revs.toReversed();
+    const reverseRevs = revs.filter(rev => rev.itemId === item.id).toReversed();
 
     let owned = 0;
     let alreadyReviewed = 0;
@@ -60,7 +60,7 @@ function ItemReviews() {
             {!revs.length && (<p>Be the first to review this listing</p>)}
 
             {revs && reverseRevs?.map(rev => (
-                <div>
+                <div key={rev.id}>
                     <p>By {rev?.userId}</p>
                     <p>{rev?.review}</p>
                     <p>Rating: {rev?.rating}</p>
@@ -68,7 +68,7 @@ function ItemReviews() {
                     {(sessionUser) && (rev.userId === sessionUser.id) && (
                         <div>
                             <OpenModalButton buttonText="Edit" modalComponent={<ReviewEditModal revId={rev.id} rev={rev} />} />
-                            <OpenModalButton buttonText="Delete" modalComponent={<ReviewDeleteModal revId={rev.id} />} />
+                            <OpenModalButton buttonText="Delete" modalComponent={<ReviewDeleteModal revId={rev.id} itemId={rev.itemId} />} />
                         </div>
                     )}
                 </div>

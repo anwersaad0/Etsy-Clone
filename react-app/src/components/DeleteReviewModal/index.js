@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { deleteReviewThunk } from "../../store/reviews";
 
-function ReviewDeleteModal({revId}) {
+function ReviewDeleteModal({revId, itemId}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -14,8 +14,8 @@ function ReviewDeleteModal({revId}) {
 
         const deletedRev = await dispatch(deleteReviewThunk(revId));
         if (deletedRev.message === "Delete Successful") {
-            //history.push("/items/current");
             closeModal();
+            history.push(`/items/${itemId}`);
         }
     }
 

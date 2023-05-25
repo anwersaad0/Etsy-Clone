@@ -52,6 +52,9 @@ function ProfileButton({ user }) {
               <NavLink to={'/items/current'}>My Listings</NavLink>
             </li>
             <li>
+              <NavLink to={'/items/new'}>Create Listing</NavLink>
+            </li>
+            <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
           </>

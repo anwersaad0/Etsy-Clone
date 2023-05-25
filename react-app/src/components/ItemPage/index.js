@@ -40,7 +40,7 @@ function ItemPage() {
             </div>
 
             <div>
-                {(item.rating) ? (<p>Rating: {item.rating}</p>) : (<p>New</p>)}
+                {(item.rating) ? (<p>Rating: {item.rating.toFixed(1)}</p>) : (<p>New</p>)}
             </div>
 
             <div>

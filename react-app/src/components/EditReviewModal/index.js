@@ -67,7 +67,7 @@ function ReviewEditModal({revId, rev}) {
                 </div>
 
                 <div>
-                    <button disabled={(!revText.length || !rating) ? true : false} type="submit">Resubmit Review</button>
+                    <button disabled={(revText.length < 10 || !rating || rating < 1 || rating > 5) ? true : false} type="submit">Resubmit Review</button>
                 </div>
             </form>
         </div>
