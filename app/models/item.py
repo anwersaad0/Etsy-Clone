@@ -21,6 +21,13 @@ class Item(db.Model):
     reviews = db.relationship('Review', back_populates='item', cascade="all, delete-orphan")
     images = db.relationship('ItemImage', back_populates='item', cascade="all, delete-orphan")
 
+    def avg_rating(self):
+        sum = 0
+        for rev in self.reviews:
+            sum += rev.rating
+        
+        avg = sum / len(self.reviews)
+        return avg
 
     def to_dict(self): 
         data = {
@@ -28,7 +35,7 @@ class Item(db.Model):
         'name': self.name,
         'price': self.price,
         'description': self.description,
-        'rating': self.rating,
+        'rating': self.avg_rating(),
 
         'userId': self.user_id
         }

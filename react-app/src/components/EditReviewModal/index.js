@@ -3,6 +3,7 @@ import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { editReviewThunk } from "../../store/reviews";
+import { getOneItemThunk } from "../../store/items";
 
 
 function ReviewEditModal({revId, rev}) {
@@ -42,6 +43,7 @@ function ReviewEditModal({revId, rev}) {
         setValErrs([]);
         setHasSubmitted(false);
 
+        await dispatch(getOneItemThunk(editedRev.itemId));
         closeModal();
         //history.push(`/items/${editedRev.itemId}`);
     }

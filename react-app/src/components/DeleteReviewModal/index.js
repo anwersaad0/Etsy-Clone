@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { deleteReviewThunk } from "../../store/reviews";
+import { getOneItemThunk } from "../../store/items";
 
 function ReviewDeleteModal({revId, itemId}) {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function ReviewDeleteModal({revId, itemId}) {
 
         const deletedRev = await dispatch(deleteReviewThunk(revId));
         if (deletedRev.message === "Delete Successful") {
+            await dispatch(getOneItemThunk(itemId));
             closeModal();
             history.push(`/items/${itemId}`);
         }

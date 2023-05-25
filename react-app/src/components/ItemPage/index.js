@@ -14,10 +14,17 @@ function ItemPage() {
     const item = useSelector((state) => state.items[itemId]);
     const user = useSelector((state) => state.users[item?.userId]);
 
+    // useEffect(() => {
+    //     dispatch(getOneItemThunk(itemId));
+    //     dispatch(getOneUserThunk(item?.userId));
+    // }, [itemId, item?.userId, item.rating, dispatch]);
+
     useEffect(() => {
-        dispatch(getOneItemThunk(itemId));
-        dispatch(getOneUserThunk(item?.userId));
-    }, [itemId, item?.userId, dispatch]);
+        (async() => {
+            await dispatch(getOneItemThunk(itemId));
+            await dispatch(getOneUserThunk(item?.userId));
+        })();
+    }, [dispatch]);
 
     if (!item) return null;
 
@@ -40,7 +47,7 @@ function ItemPage() {
             </div>
 
             <div>
-                {(item.rating) ? (<p>Rating: {item.rating.toFixed(1)}</p>) : (<p>New</p>)}
+                {(item.rating) ? (<p>Rating: {item.rating.toFixed(1)}</p>) : (<p>Unrated</p>)}
             </div>
 
             <div>

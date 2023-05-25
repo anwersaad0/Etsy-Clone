@@ -26,16 +26,6 @@ def item_reviews(id):
 def item(id):
     item = Item.query.get(id)
 
-    item_revs = Review.query.filter(Review.item_id == id).all()
-    #print(type(item_revs))
-
-    if item_revs:
-        item_revs_rating = 0
-        for rev in item_revs:
-            item_revs_rating += rev.rating
-    
-        item.rating = item_revs_rating / len(item_revs)
-
     return item.to_dict()
 
 @item_routes.route('/<int:id>/reviews', methods=['POST'])

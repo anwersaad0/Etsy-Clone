@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createReviewThunk } from "../../store/reviews";
 import { useHistory, useParams } from "react-router-dom";
 import { getOneItemThunk } from "../../store/items";
+import { getReviewsThunk } from "../../store/reviews";
 import { useModal } from "../../context/Modal";
 
 function CreateReviewModal({itemId}) {
@@ -39,6 +40,7 @@ function CreateReviewModal({itemId}) {
         setValErrs([]);
         setHasSubmitted(false);
 
+        await dispatch(getOneItemThunk(itemId));
         closeModal();
         //history.push(`/items/${newRev.itemId}`);
     }
