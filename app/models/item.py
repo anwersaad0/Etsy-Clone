@@ -23,11 +23,14 @@ class Item(db.Model):
 
     def avg_rating(self):
         sum = 0
-        for rev in self.reviews:
-            sum += rev.rating
+
+        if self.reviews:
+            for rev in self.reviews:
+                sum += rev.rating
         
-        avg = sum / len(self.reviews)
-        return avg
+            avg = sum / len(self.reviews)
+            return avg
+        
 
     def to_dict(self): 
         data = {
