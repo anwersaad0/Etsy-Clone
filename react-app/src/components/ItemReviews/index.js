@@ -30,7 +30,7 @@ function ItemReviews() {
     let alreadyReviewed = 0;
 
     if (sessionUser) {
-        revs.forEach(rev => {
+        reverseRevs.forEach(rev => {
             if (rev.userId === sessionUser.id) {
                 alreadyReviewed = 1;
             }
@@ -51,15 +51,15 @@ function ItemReviews() {
         )
     }
 
-    //console.log('revs', revs);
+    //console.log(`owned? ${owned}, already reviewed? ${alreadyReviewed}`);
 
     return (
         <div>
             {addRevBtn}
 
-            {!revs.length && (<p>Be the first to review this listing</p>)}
+            {!owned && !reverseRevs.length && (<p>Be the first to review this listing</p>)}
 
-            {revs && reverseRevs?.map(rev => (
+            {reverseRevs?.map(rev => (
                 <div key={rev.id}>
                     <p>By {rev?.userId}</p>
                     <p>{rev?.review}</p>

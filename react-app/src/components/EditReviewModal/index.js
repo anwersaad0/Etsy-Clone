@@ -16,6 +16,9 @@ function ReviewEditModal({revId, rev}) {
     const [revText, setRevText] = useState('');
     const [rating, setRating] = useState(0);
 
+    const [valErrs, setValErrs] = useState([]);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
     useEffect(() => {
         setRevText(rev.review);
         setRating(rev.rating);
@@ -23,6 +26,9 @@ function ReviewEditModal({revId, rev}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setHasSubmitted(true);
+        if (valErrs.length) return alert("Your edit has errors, cannot submit!");
 
         const formData = new FormData();
         formData.append('review', revText);
@@ -33,13 +39,36 @@ function ReviewEditModal({revId, rev}) {
         setRevText('');
         setRating(0);
 
+        setValErrs([]);
+        setHasSubmitted(false);
+
         closeModal();
-        history.push(`/items/${editedRev.itemId}`);
+        //history.push(`/items/${editedRev.itemId}`);
     }
+
+    useEffect(() => {
+        const valErrs = [];
+
+        if (revText.length > 255) {
+            valErrs.push("Review exceeds the character limit (255)")
+        }
+
+        setValErrs(valErrs);
+    }, [revText]);
 
     return (
         <div>
             <h1>Edit this Review</h1>
+            {hasSubmitted && valErrs.length > 0 && (
+                <div>
+                    <ul>
+                        {valErrs?.map(err => (
+                            <li key={err}>{err}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+
             <form onSubmit={(e) => handleSubmit(e)} className="new-rev-form-details">
                 <div>
                     <textarea 

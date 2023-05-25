@@ -20,10 +20,12 @@ function ItemFormPage() {
     const [description, setDesc] = useState('');
 
     const [valErrs, setValErrs] = useState([]);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setHasSubmitted(true);
         if (valErrs.length) return alert("Your listing has errors, cannot submit!");
 
         const formData = new FormData();
@@ -36,7 +38,9 @@ function ItemFormPage() {
         setName('');
         setPrice(0);
         setDesc('');
+
         setValErrs([]);
+        setHasSubmitted(false);
 
         history.push(`/items/${newItem.id}`);
     }
@@ -44,9 +48,14 @@ function ItemFormPage() {
     useEffect(() => {
         const valErrs = [];
 
-        if (!name) valErrs.push("Please enter the item name");
-        if (!price) valErrs.push("Please enter the item price");
-        if (!description) valErrs.push("Please enter a description");
+        if (!name.length) valErrs.push("Please enter the item name");
+        if (!price) valErrs.push("Please enter a valid item price");
+
+        if (!description.length) {
+            valErrs.push("Please enter a description");
+        } else if (description.length < 30) {
+            valErrs.push("Description must be 30 characters or longer");
+        }
 
         setValErrs(valErrs);
     }, [name, price, description]);
@@ -54,12 +63,12 @@ function ItemFormPage() {
     return (
         <div>
             <h1>Create an Item Listing</h1>
-            {valErrs.length > 0 && (
+            {hasSubmitted && valErrs.length > 0 && (
                 <div>
                     <ul>
-                        {valErrs.map(err => {
+                        {valErrs?.map(err => (
                             <li key={err}>{err}</li>
-                        })}
+                        ))}
                     </ul>
                 </div>
             )}
@@ -82,6 +91,7 @@ function ItemFormPage() {
                     <input
                         type="number"
                         name="price"
+                        min="0"
                         onChange={e => setPrice(e.target.value)}
                         value={price}
                         required={true}
@@ -91,14 +101,17 @@ function ItemFormPage() {
 
                 <div>
                     <div><label>Description</label></div>
-                    <input
+                    <textarea
                         type="text"
                         name="desc"
+                        rows="8"
+                        cols="40"
+
                         onChange={e => setDesc(e.target.value)}
                         value={description}
                         required={true}
                     >
-                    </input>
+                    </textarea>
                 </div>
 
                 <div>
