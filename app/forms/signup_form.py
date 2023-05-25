@@ -22,7 +22,7 @@ def username_exists(form, field):
 def valid_email(form, field):
 # Checking if username is already in use
     email = field.data
-    email_error = '@' not in email or email[-1] == '@'
+    email_error = '@' not in email or email[-1] == '@' or email[0] == '@'
     if email_error:
         raise ValidationError('Email is not valid.')
 
