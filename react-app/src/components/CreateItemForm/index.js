@@ -19,6 +19,8 @@ function ItemFormPage() {
     const [price, setPrice] = useState(0);
     const [description, setDesc] = useState('');
 
+    const [itemImage, setItemImage] = useState('');
+
     const [valErrs, setValErrs] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -33,9 +35,13 @@ function ItemFormPage() {
         formData.append('price', price);
         formData.append('description', description);
 
-        const newItem = await dispatch(createItemThunk(formData));
+        const formData2 = new FormData();
+        formData2.append('url', itemImage);
+
+        const newItem = await dispatch(createItemThunk(formData, formData2));
 
         setName('');
+        setItemImage('');
         setPrice(0);
         setDesc('');
 
@@ -52,6 +58,10 @@ function ItemFormPage() {
             valErrs.push("Please enter the item name");
         } else if (name.length > 50) {
             valErrs.push("Name cannot exceed the 50 character limit");
+        }
+
+        if (!itemImage) {
+            valErrs.push("Please upload an image of the card");
         }
 
         if (!price || price <= 0) valErrs.push("Please enter a valid item price");
@@ -82,7 +92,7 @@ function ItemFormPage() {
 
             <form onSubmit={(e) => handleSubmit(e)} className='new-item-form-details'>
                 <div>
-                    <div><label>Item Name</label></div>
+                    <div><label>Card Name</label></div>
                     <input 
                         type="text"
                         name="name"
@@ -94,7 +104,18 @@ function ItemFormPage() {
                 </div>
 
                 <div>
-                    <div><label>Item Price</label></div>
+                    <div><label>Card Image:</label></div>
+                    <input
+                        type='file'
+                        name='image'
+                        accept='image/*'
+                        onChange={(e) => setItemImage(e.target.files[0])}
+                        required={true}
+                    ></input>
+                </div>
+
+                <div>
+                    <div><label>Card Price</label></div>
                     <input
                         type="number"
                         name="price"

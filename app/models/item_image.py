@@ -9,11 +9,11 @@ class ItemImage(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String(255), nullable=False)
+    url = db.Column(db.String, nullable=False)
 
     item_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('items.id')))
 
-    item = db.relationship("Item", back_populates="images")
+    item = db.relationship("Item", back_populates="image")
 
     def to_dict(self):
         data = {

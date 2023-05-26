@@ -21,7 +21,7 @@ function ItemPage() {
 
     if (!item) return null;
 
-    //console.log('item ', item);
+    console.log('item ', item);
     //console.log(typeof item?.userId);
 
     return (
@@ -29,6 +29,10 @@ function ItemPage() {
             <div>
                 <p>{item.name}</p>
                 <p>By {user?.username}</p>
+            </div>
+
+            <div>
+                <img src={item?.image} alt="Card Image"></img>
             </div>
 
             <div>

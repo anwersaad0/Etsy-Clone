@@ -1,7 +1,9 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from ..models import User, Item, Review, db
-from ..forms import NewItem, EditItem, NewReview
+from ..models import User, Item, Review, ItemImage, db
+from ..forms import NewItem, EditItem, NewReview, NewItemImage
+
+from ..api.aws_image_helpers import get_unique_image_filename, upload_file_to_s3
 
 item_routes = Blueprint('items', __name__)
 
@@ -48,6 +50,34 @@ def add_item_review(id):
         return review.to_dict()
     
     return {"errors": form.errors}
+
+@item_routes.route('/<int:id>/image', methods=['POST'])
+@login_required
+def add_item_image(id):
+    item = Item.query.get(id)
+
+    form = NewItemImage()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        image = form.data['url']
+        image.filename = get_unique_image_filename(image.filename)
+
+        image_upload = upload_file_to_s3(image)
+
+        print(image_upload)
+
+        item_image = ItemImage(
+            url = image_upload['url'],
+            item_id = item.id
+        )
+
+        db.session.add(item_image)
+        db.session.commit()
+        return item_image.to_dict()
+    
+    return { "errors": form.errors}
+
 
 @item_routes.route('/new', methods=['POST'])
 @login_required

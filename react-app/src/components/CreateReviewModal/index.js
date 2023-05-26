@@ -52,15 +52,11 @@ function CreateReviewModal({itemId}) {
 
         if (!revText.length) {
             valErrs.push("Please write a review of the item");
-        } else if (revText.length > 255) {
-            valErrs.push("Review exceeds the character limit (255)")
+        } else if (revText.length > 400) {
+            valErrs.push("Review exceeds the character limit (400)");
         } else if (revText.length < 10) {
             valErrs.push("Review must be at least 10 characters");
         }
-
-        // if (!rating) {
-        //     valErrs.push("Please enter a valid rating");
-        // }
 
         setValErrs(valErrs);
     }, [revText]);
