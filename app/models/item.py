@@ -14,12 +14,13 @@ class Item(db.Model):
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(800), nullable=False)
     rating = db.Column(db.Float)
+    image = db.Column(db.String, nullable=False)
 
     user_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')))
 
     user = db.relationship('User', back_populates='items')
     reviews = db.relationship('Review', back_populates='item', cascade="all, delete-orphan")
-    image = db.relationship('ItemImage', back_populates='item', cascade="all, delete-orphan")
+    #image = db.relationship('ItemImage', back_populates='item', cascade="all, delete-orphan")
 
     def avg_rating(self):
         sum = 0
@@ -39,6 +40,7 @@ class Item(db.Model):
         'price': self.price,
         'description': self.description,
         'rating': self.avg_rating(),
+        'image': self.image,
 
         'userId': self.user_id
         }

@@ -86,30 +86,15 @@ export const getOneItemThunk = (itemId) => async (dispatch) => {
     }
 }
 
-export const createItemThunk = (item, image) => async (dispatch) => {
+export const createItemThunk = (item) => async (dispatch) => {
     const res = await fetch('/api/items/new', {
         method: 'POST',
         body: item
     });
 
-    //console.log('response ', res);
-
     if (res.ok) {
         const item = await res.json();
-
-        console.log(image);
-
-        const res2 = await fetch(`/api/items/${item.id}/image`, {
-            method: 'POST',
-            body: image
-        });
-
-        const img = await res2.json();
-        console.log(img);
-
-        item.image = img;
-
-        dispatch(createItemAct(item));
+        await dispatch(createItemAct(item));
         return item;
     } else {
         return ("createItem response not ok")

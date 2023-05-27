@@ -21,7 +21,7 @@ function UserItems() {
     console.log(items);
     
     if (!items) {
-        return <h1>No current user songs found</h1>
+        return <h1>No current user items found</h1>
     }
 
     return (

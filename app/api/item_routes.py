@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from ..models import User, Item, Review, ItemImage, db
-from ..forms import NewItem, EditItem, NewReview, NewItemImage
+from ..models import User, Item, Review, db
+from ..forms import NewItem, EditItem, NewReview
 
 from ..api.aws_image_helpers import get_unique_image_filename, upload_file_to_s3
 
@@ -51,34 +51,6 @@ def add_item_review(id):
     
     return {"errors": form.errors}
 
-@item_routes.route('/<int:id>/image', methods=['POST'])
-@login_required
-def add_item_image(id):
-    item = Item.query.get(id)
-
-    form = NewItemImage()
-    form['csrf_token'].data = request.cookies['csrf_token']
-
-    if form.validate_on_submit():
-        image = form.data['url']
-        image.filename = get_unique_image_filename(image.filename)
-
-        image_upload = upload_file_to_s3(image)
-
-        print(image_upload)
-
-        item_image = ItemImage(
-            url = image_upload['url'],
-            item_id = item.id
-        )
-
-        db.session.add(item_image)
-        db.session.commit()
-        return item_image.to_dict()
-    
-    return { "errors": form.errors}
-
-
 @item_routes.route('/new', methods=['POST'])
 @login_required
 def add_item():
@@ -90,11 +62,16 @@ def add_item():
 
     if form.validate_on_submit():
         #print('================== VALIDATING ================')
+        item_image = form.data['image']
+        item_image.filename = get_unique_image_filename(item_image.filename)
+        image_upload = upload_file_to_s3(item_image)
+
         item = Item(name = form.data['name'],
                     user_id = current_user.id,
                     price = form.data['price'],
                     description = form.data['description'],
-                    rating = 0
+                    rating = 0,
+                    image = image_upload['url']
                     )
         
         db.session.add(item)

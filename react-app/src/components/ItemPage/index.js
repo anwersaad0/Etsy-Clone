@@ -21,7 +21,7 @@ function ItemPage() {
 
     if (!item) return null;
 
-    console.log('item ', item);
+    //console.log('item ', item.itemImage);
     //console.log(typeof item?.userId);
 
     return (

@@ -34,11 +34,9 @@ function ItemFormPage() {
         formData.append('name', name);
         formData.append('price', price);
         formData.append('description', description);
+        formData.append('image', itemImage);
 
-        const formData2 = new FormData();
-        formData2.append('url', itemImage);
-
-        const newItem = await dispatch(createItemThunk(formData, formData2));
+        const newItem = await dispatch(createItemThunk(formData));
 
         setName('');
         setItemImage('');
@@ -75,7 +73,7 @@ function ItemFormPage() {
         }
 
         setValErrs(valErrs);
-    }, [name, price, description]);
+    }, [name, price, description, itemImage]);
 
     return (
         <div>
