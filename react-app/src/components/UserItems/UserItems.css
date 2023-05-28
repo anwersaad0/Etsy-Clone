@@ -1,0 +1,82 @@
+.user-items-div {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.all-user-items-div {
+    display: grid;
+    grid-template-columns: repeat(2, 520px);
+
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    padding: 12px 0px;
+}
+
+.user-items-title {
+    margin-top: 28px;
+    text-align: center;
+}
+
+.user-card-details {
+    margin: 8px;
+    border: 4px solid rgb(163, 163, 163);
+    background-color: rgb(49, 67, 85);
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+}
+
+.user-card-details:hover {
+    border: 4px solid rgb(218, 217, 217);
+    transition: 0.5s;
+}
+
+.user-card-mini-details {
+    display: flex;
+}
+
+.user-items-options {
+    display: flex;
+    padding: 4px;
+    padding-bottom: 8px;
+    border-top: 4px solid rgb(163, 163, 163);
+}
+
+.edit-item-btn {
+  width: 120px;
+  height: 36px;
+  margin-right: 0px;
+  margin-top: 8px;
+
+  padding: 0px 8px;
+
+  background-color: rgb(49, 67, 85);
+  border: none;
+  border-right: 1px solid rgb(153, 153, 153);
+
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+}
+
+.delete-item-btn {
+  width: 140px;
+  height: 36px;
+  margin-left: -1px;
+  margin-top: 8px;
+
+  padding: 0px 8px;
+
+  background-color: rgb(49, 67, 85);
+  border: none;
+  border-left: 1px solid rgb(153, 153, 153);
+
+  text-decoration: none;
+  font-size: 18px;
+  color: rgb(218, 179, 179);
+}
+
+.delete-item-btn:hover, .edit-item-btn:hover {
+    text-decoration: underline;
+}
