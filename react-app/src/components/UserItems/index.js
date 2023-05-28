@@ -38,7 +38,7 @@ function UserItems() {
                             <div className="card-mini-text">
                                 <p className="card-mini-name">{name}</p>
                                 <p className="card-mini-price">Price: ${price.toFixed(2)}</p>
-                                <p className="card-mini-rating">Player Rating: <i className="fas fa-star card-mini-star" /> {rating.toFixed(1)}</p>
+                                <p className="card-mini-rating">Player Rating: <i className="fas fa-star card-mini-star" /> {(rating) ? rating.toFixed(1) : "Unrated"}</p>
                             </div>
                         </NavLink>
 
