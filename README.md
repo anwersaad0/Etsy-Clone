@@ -3,6 +3,16 @@ Deck's Hobbies is a website clone based off of Etsy but with a TCG theme to it. 
 
 **Live Site: [Deck's Hobbies](https://decks-hobbies.onrender.com)**
 
+![Pic 1](https://raw.githubusercontent.com/anwersaad0/Etsy-Clone/main/ReadmePics/homepagepic.png)
+
+![Pic 2](https://raw.githubusercontent.com/anwersaad0/Etsy-Clone/main/ReadmePics/listingspic.png)
+
+![Pic 3](https://raw.githubusercontent.com/anwersaad0/Etsy-Clone/main/ReadmePics/userlistingpics.png)
+
+![Pic 4](https://raw.githubusercontent.com/anwersaad0/Etsy-Clone/main/ReadmePics/cardinfopic.png)
+
+
+
 #### Please read the below links to the project's Wiki:
 - [Feature List](https://github.com/anwersaad0/Etsy-Clone/wiki/Project-Features)
 - [Database Schema](https://github.com/anwersaad0/Etsy-Clone/blob/main/EtsyCloneDBD.png)
