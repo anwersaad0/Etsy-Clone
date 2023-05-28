@@ -4,3 +4,7 @@ body {
     background-color: rgb(37, 51, 65);
     /* color: white */
 }
+
+a:-webkit-any-link {
+    text-decoration: none;
+}

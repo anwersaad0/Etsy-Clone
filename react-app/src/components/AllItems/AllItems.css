@@ -1,0 +1,61 @@
+.all-items-div {
+    display: grid;
+    grid-template-columns: repeat(2, 520px);
+
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    padding: 12px 0px;
+}
+
+.card-mini-details {
+    margin: 8px;
+    background-color: rgb(49, 67, 85);
+    border: 4px solid rgb(163, 163, 163);
+    border-radius: 16px;
+}
+
+.card-mini-details:hover {
+    border: 4px solid rgb(218, 217, 217);
+    transition: 0.5s;
+}
+
+.card-mini-div {
+    display: flex;
+}
+
+.card-mini-img-div {
+    width: 168px;
+    height: 234px;
+    margin: 8px;
+}
+
+.card-mini-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.card-mini-text {
+    border-left: 4px solid rgb(163, 163, 163);
+    padding-left: 12px;
+}
+
+.card-mini-name {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card-mini-price, .card-mini-rating {
+    font-size: 24px;
+    color: white;
+}
+
+.card-mini-star {
+    background: linear-gradient(90deg, rgb(216, 202, 124) 10%, rgb(207, 105, 87));
+    background-clip: text;
+    color: transparent;
+}
