@@ -1,0 +1,35 @@
+.delete-rev-div {
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-image: linear-gradient(90deg, rgb(124, 175, 216), rgb(207, 105, 87)) 1;
+    background-color: rgb(49, 67, 85);
+    color: white;
+    text-align: center;
+    padding: 0px 20px;
+    width: 370px;
+}
+
+.confirm-rev-delete, .decline-rev-delete {
+    background-color: rgb(49, 67, 85);
+
+    border: none;
+    border-right: 1px solid rgb(153, 153, 153);
+
+    color: white;
+    font-size: 16px;
+
+    margin-bottom: 16px;
+    margin-top: 8px;
+
+    padding: 6px 8px;
+}
+
+.confirm-rev-delete {
+    border: none;
+    color: rgb(218, 179, 179);
+}
+
+.confirm-rev-delete:hover, .decline-rev-delete:hover {
+    text-decoration: underline;
+}

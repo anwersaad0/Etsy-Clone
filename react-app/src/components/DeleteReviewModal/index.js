@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { deleteReviewThunk } from "../../store/reviews";
 import { getOneItemThunk } from "../../store/items";
+import './DeleteReviewModal.css';
 
 function ReviewDeleteModal({revId, itemId}) {
     const dispatch = useDispatch();
@@ -22,11 +23,11 @@ function ReviewDeleteModal({revId, itemId}) {
     }
 
     return (
-        <div>
+        <div className="delete-rev-div">
             <h1>Delete your Review?</h1>
             <form onSubmit={handleDelete}>
-                <button onClick={closeModal}>No, keep my review</button>
-                <button type="submit">Yes, delete my review</button>
+                <button className="decline-rev-delete" onClick={closeModal}>No, keep my review</button>
+                <button className="confirm-rev-delete" type="submit">Yes, delete my review</button>
             </form>
         </div>
     )
