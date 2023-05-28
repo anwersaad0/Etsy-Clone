@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getOneItemThunk } from "../../store/items";
 import { getOneUserThunk } from "../../store/users";
 import ItemReviews from "../ItemReviews";
+import './ItemPage.css';
 
 
 function ItemPage() {
@@ -25,30 +26,38 @@ function ItemPage() {
     //console.log(typeof item?.userId);
 
     return (
-        <div>
-            <div>
-                <p>{item.name}</p>
-                <p>By {user?.username}</p>
+        <div className="item-page-div">
+            <div className="item-page-details">
+                <div className="item-page-img-div">
+                    <img className="item-page-img" src={item?.image} alt="Card Image"></img>
+                </div>
+
+                <div className="item-page-text">
+                    <div>
+                        <p className="item-page-name">{item.name}</p>
+                    </div>
+
+                    <div className="item-page-owner-div">
+                        <p className="item-page-owner">From {user?.username}</p>
+                    </div>
+
+                    <div className="item-desc-div">
+                        <p className="item-page-desc">{item.description}</p>
+                    </div>
+
+                    <div className="item-price-div">
+                        <p className="item-page-price">Price: ${item.price.toFixed(2)}</p>
+                        <button onClick={() => alert("Feature coming soon.")} className="add-to-cart-btn">Add to Cart</button>
+                    </div>
+
+                    <div>
+                        {(item.rating) ? (<p className="item-page-rating">Rating: <i className="fas fa-star card-mini-star" /> {item.rating.toFixed(1)}</p>) : (<p className="item-page-rating">Unrated</p>)}
+                    </div>
+                </div>
             </div>
 
-            <div>
-                <img src={item?.image} alt="Card Image"></img>
-            </div>
-
-            <div>
-                <p>Price: ${item.price.toFixed(2)}</p>
-            </div>
-
-            <div>
-                <p>{item.description}</p>
-            </div>
-
-            <div>
-                {(item.rating) ? (<p>Rating: {item.rating.toFixed(1)}</p>) : (<p>Unrated</p>)}
-            </div>
-
-            <div>
-                <h2>Reviews</h2>
+            <div className="item-page-reviews-div">
+                <h1>Reviews</h1>
                 <div>
                     <ItemReviews />
                 </div>

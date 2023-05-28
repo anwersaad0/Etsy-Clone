@@ -7,6 +7,7 @@ import CreateReviewModal from "../CreateReviewModal";
 import OpenModalButton from "../OpenModalButton";
 import ReviewDeleteModal from "../DeleteReviewModal";
 import ReviewEditModal from "../EditReviewModal";
+import { getAllUsersThunk } from "../../store/users";
 
 
 function ItemReviews() {
@@ -18,9 +19,11 @@ function ItemReviews() {
     useEffect(() => {
         dispatch(getOneItemThunk(itemId));
         dispatch(getReviewsThunk(itemId));
+        dispatch(getAllUsersThunk());
     }, [dispatch, itemId]);
 
     const sessionUser = useSelector(state => state.session.user);
+    const users = useSelector(state => Object.values(state.users));
     const item = useSelector(state => state.items[itemId]);
 
     const revs = useSelector(state => Object.values(state.reviews));
@@ -45,6 +48,7 @@ function ItemReviews() {
     if (sessionUser && owned === 0 && alreadyReviewed === 0) {
         addRevBtn = (
             <OpenModalButton 
+                buttonClass="post-rev-btn"
                 buttonText="Post Your Review"
                 modalComponent={<CreateReviewModal itemId={itemId}/>}
             />
@@ -55,20 +59,21 @@ function ItemReviews() {
 
     return (
         <div>
-            {addRevBtn}
-
-            {!owned && !reverseRevs.length && (<p>Be the first to review this listing</p>)}
+            <div className="add-rev-btn-div">
+                {!owned && !reverseRevs.length && (<p>Be the first to review this listing</p>)}
+                {addRevBtn}
+            </div>
 
             {reverseRevs?.map(rev => (
-                <div key={rev.id}>
-                    <p>By {rev?.userId}</p>
+                <div className="review-div" key={rev.id}>
+                    <p className="rev-user-text">By {users[rev?.userId - 1]?.username}</p>
                     <p>{rev?.review}</p>
-                    <p>Rating: {rev?.rating}</p>
+                    <p>Rating: <i className="fas fa-star card-mini-star" /> {rev?.rating}</p>
 
                     {(sessionUser) && (rev.userId === sessionUser.id) && (
-                        <div>
-                            <OpenModalButton buttonText="Edit" modalComponent={<ReviewEditModal revId={rev.id} rev={rev} />} />
-                            <OpenModalButton buttonText="Delete" modalComponent={<ReviewDeleteModal revId={rev.id} itemId={rev.itemId} />} />
+                        <div className="rev-user-ui">
+                            <OpenModalButton buttonClass="edit-rev-btn" buttonText="Edit" modalComponent={<ReviewEditModal revId={rev.id} rev={rev} />} />
+                            <OpenModalButton buttonClass="del-rev-btn" buttonText="Delete" modalComponent={<ReviewDeleteModal revId={rev.id} itemId={rev.itemId} />} />
                         </div>
                     )}
                 </div>

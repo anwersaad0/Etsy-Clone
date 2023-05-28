@@ -1,0 +1,194 @@
+.item-page-div {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+}
+
+.item-page-details {
+    display: flex;
+    background-color: rgb(49, 67, 85);
+    border-bottom: 4px solid rgb(163, 163, 163);
+    margin-top: 24px;
+    border-top-right-radius: 24px;
+    border-top-left-radius: 24px;
+    min-width: 1204px;
+}
+
+.item-page-img-div {
+    max-width: 336px;
+    max-height: 468px;
+    min-width: 336px;
+    min-height: 468px;
+    margin: 8px;
+    margin: 18px 28px;
+}
+
+.item-page-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+}
+
+.item-page-text {
+    border-left: 4px solid rgb(163, 163, 163);
+    padding-left: 28px;
+}
+
+.item-page-name {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.item-page-owner {
+    font-size: 24px;
+    margin-top: 12px;
+    margin-left: 4px;
+}
+
+.item-page-owner-div {
+    border-bottom: 2px solid rgb(163, 163, 163);
+    width: 95%
+}
+
+.item-desc-div {
+    width: 95%;
+}
+
+.item-page-desc {
+    font-size: 18px;
+}
+
+.item-price-div {
+    display: flex;
+    border-top: 2px solid rgb(163, 163, 163);
+    width: 95%
+}
+
+.item-page-rating, .item-page-price {
+    font-size: 32px;
+}
+
+.item-page-price {
+    margin-bottom: 16px;
+}
+
+.item-page-rating {
+    margin-top: 16px;
+}
+
+.add-to-cart-btn {
+    background-color: rgb(49, 67, 85);
+    height: 32px;
+
+    border: none;
+    border-right: 1px solid rgb(153, 153, 153);
+    border-left: 1px solid rgb(153, 153, 153);
+
+    color: white;
+    font-size: 16px;
+
+    margin-top: 34px;
+    margin-left: 16px;
+
+    padding: 0px 12px;
+}
+
+.add-to-cart-btn:hover {
+    background-color: rgb(61, 85, 109);
+    transition: 0.5s;
+}
+
+.item-page-reviews-div {
+    width: inherit;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-image: linear-gradient(90deg, rgb(124, 175, 216), rgb(207, 105, 87)) 1;
+    background-color: rgb(49, 67, 85);
+    margin-top: 24px;
+    padding: 12px 24px;
+}
+
+.add-rev-btn-div {
+    border-bottom: 4px solid rgb(153, 153, 153);
+    padding-bottom: 8px;
+}
+
+.post-rev-btn {
+    background-color: rgb(49, 67, 85);
+
+    border: none;
+    border-top: 1px solid rgb(153, 153, 153);
+    border-bottom: 1px solid rgb(153, 153, 153);
+
+    color: white;
+    font-size: 16px;
+
+    margin-bottom: 0px;
+    margin-top: 8px;
+
+    padding: 12px;
+}
+
+.review-div {
+    border-bottom: 2px solid rgb(153, 153, 153);
+    /* border-left: 1px solid rgb(153, 153, 153); */
+    margin: 12px 0px;
+}
+
+.rev-user-text {
+    font-weight: bold;
+}
+
+.rev-user-ui {
+    border-top: 1px solid rgb(153, 153, 153);
+    padding: 8px 0px;
+}
+
+.post-rev-btn:hover {
+    background-color: rgb(61, 85, 109);
+    transition: 0.5s;
+}
+
+.edit-rev-btn {
+    width: 60px;
+    height: 24px;
+    margin-right: 0px;
+    margin-top: 8px;
+  
+    padding: 0px 8px;
+  
+    background-color: rgb(49, 67, 85);
+    border: none;
+    border-right: 1px solid rgb(153, 153, 153);
+  
+    text-decoration: none;
+    /* font-size: 18px; */
+    color: white;
+}
+
+.del-rev-btn {
+    width: 60px;
+    height: 24px;
+    margin-right: 0px;
+    margin-top: 8px;
+  
+    padding: 0px 8px;
+  
+    background-color: rgb(49, 67, 85);
+    border: none;
+  
+    text-decoration: none;
+    /* font-size: 18px; */
+    color: rgb(218, 179, 179);
+}
+
+.edit-rev-btn:hover, .del-rev-btn:hover {
+    text-decoration: underline;
+}
