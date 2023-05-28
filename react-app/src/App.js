@@ -10,6 +10,7 @@ import ItemPage from "./components/ItemPage";
 import ItemFormPage from "./components/CreateItemForm";
 import EditItemFormPage from "./components/EditItemForm";
 import UserItems from "./components/UserItems";
+import HomePage from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,12 @@ function App() {
           </Route>
           <Route exact path="/items">
             <AllItems />
+          </Route>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route>
+            Page not found
           </Route>
         </Switch>
       )}

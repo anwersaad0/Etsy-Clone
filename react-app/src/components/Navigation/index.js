@@ -9,18 +9,15 @@ function Navigation({ isLoaded }){
 
 	return (
 		<ul className='nav-bar'>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
+			<li className='site-title-div'>
+				<i className='fas fa-dice-d20' />
+				<NavLink className="site-title" exact to="/">Deck's Hobbies</NavLink>
 			</li>
 			{isLoaded && (
-				<div>
-					<li>
-						<NavLink exact to='/items'>Listings</NavLink>
-					</li>
-					<li>
-						<ProfileButton user={sessionUser} />
-					</li>
-				</div>
+				<li className='nav-right-ui'>
+					<NavLink className='listings-link' exact to='/items'>Listings</NavLink>
+					<ProfileButton user={sessionUser} />
+				</li>
 			)}
 		</ul>
 	);

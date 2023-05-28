@@ -5,17 +5,19 @@
   position: fixed;
   right: 0px;
   padding: 4px;
-  background-color: rgb(112, 112, 112);
-  border: 2px solid rgb(87, 207, 87);
+  background-color: rgb(49, 67, 85);
+  border: 3px solid transparent;
+  border-left: none;
+  border-right: none;
+  border-image: linear-gradient(135deg, rgb(124, 175, 216), rgb(207, 105, 87)) 1;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-  border-radius: 8px;
   text-align: center;
   min-height: 75px;
   min-width: 116px;
   margin-right: 24px;
-  margin-top: 2px;
+  margin-top: 50px;
 }
 
 .hidden {
@@ -26,11 +28,114 @@
   list-style-type: none;
   display: flex;
   justify-content: space-between;
-  background-color: rgb(112, 112, 112);
+  background-color: rgb(49, 67, 85);
   margin: 0px;
   padding: 14px 0px;
-  padding-bottom: 12px;
-  border-bottom: 6px solid rgb(87, 207, 87);
-  border-image: linear-gradient(45deg, rgb(87, 207, 87), rgb(207, 115, 87)) 1;
+  padding-bottom: 8px;
+  border-bottom: 6px solid transparent;
+  border-image: linear-gradient(45deg, rgb(124, 175, 216), white, rgb(207, 105, 87)) 1;
   height: 76px;
+}
+
+.site-title-div {
+  margin-top: 8px;
+  margin-left: 26px;
+}
+
+.fa-dice-d20 {
+  background: linear-gradient(45deg, rgb(124, 175, 216), rgb(207, 105, 87));
+  background-clip: text;
+  color: transparent;
+  font-size: 36px;
+}
+
+.site-title {
+  font-size: 36px;
+  font-family: fantasy;
+  text-decoration: none;
+  color: white;
+  
+  margin-left: 10px;
+}
+
+.nav-right-ui {
+  margin-top: 6px;
+  display: flex;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.listings-link {
+  height: 36px;
+  margin-right: -1px;
+  margin-top: 8px;
+
+  padding: 0px 8px;
+
+  border: none;
+  border-left: 1px solid rgb(153, 153, 153);
+  border-right: 1px solid rgb(153, 153, 153);
+
+  text-decoration: none;
+  font-size: 24px;
+  color: white;
+}
+
+.profile-button {
+  width: 80px;
+  height: 36px;
+  margin-right: 32px;
+  margin-top: 8px;
+
+  padding: 0px 8px;
+
+  background-color: rgb(49, 67, 85);
+  border: none;
+  border-left: 1px solid rgb(153, 153, 153);
+  border-right: 1px solid rgb(153, 153, 153);
+
+  text-decoration: none;
+  font-size: 24px;
+  color: white;
+}
+
+.listings-link:hover, .profile-button:hover {
+  background-color: rgb(61, 85, 109);
+  transition: 0.5s;
+}
+
+.nav-divider {
+  margin: 8px 0px;
+  border: 1px solid lightgray;
+  width: 100%;
+}
+
+.logout-btn, .login-btn, .signup-btn {
+  background-color: rgb(49, 67, 85);
+
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: max-content;
+
+  color: white;
+  font-size: 16px;
+  bottom: 0px;
+}
+
+.logout-btn:hover, .signup-btn:hover, .login-btn:hover, .user-items-link:hover, .create-item-link:hover {
+  text-decoration: underline;
+}
+
+.username-li, .email-li, .create-item-li, .user-items-li {
+  margin: 4px 0px;
+  /* font-weight: bold; */
+}
+
+.username-li, .email-li {
+  font-weight: bold;
+}
+
+.user-items-link, .create-item-link {
+  text-decoration: none;
+  color: white;
 }
