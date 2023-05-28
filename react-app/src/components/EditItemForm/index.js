@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editItemThunk } from "../../store/items";
 import { getOneItemThunk } from "../../store/items";
+import './EditItemForm.css'
 
 
 function EditItemFormPage() {
@@ -88,10 +89,10 @@ function EditItemFormPage() {
     
 
     return (
-        <div>
+        <div className="edit-item-page">
             <h1>Edit this Item Listing</h1>
             {hasSubmitted && valErrs.length > 0 && (
-                <div>
+                <div className="error-text">
                     <ul>
                         {valErrs.map(err => (
                             <li key={err}>{err}</li>
@@ -101,8 +102,8 @@ function EditItemFormPage() {
             )}
 
             <form method="PUT" onSubmit={(e) => handleSubmit(e)} className='edit-item-form-details'>
-                <div>
-                    <div><label>Item Name</label></div>
+                <div className="edit-detail">
+                    <div className='label-div'><label>Item Name</label></div>
                     <input 
                         type="text"
                         name="name"
@@ -113,8 +114,8 @@ function EditItemFormPage() {
                     </input>
                 </div>
 
-                <div>
-                    <div><label>Item Price</label></div>
+                <div className="edit-detail">
+                    <div className='label-div'><label>Item Price</label></div>
                     <input
                         type="number"
                         name="price"
@@ -127,13 +128,15 @@ function EditItemFormPage() {
                     </input>
                 </div>
 
-                <div>
-                    <div><label>Description</label></div>
+                <div className="edit-detail">
+                    <div className='label-div'><label>Description</label></div>
                     <textarea
+                        className='create-textarea'
                         type="text"
                         name="desc"
                         rows="8"
                         cols="40"
+                        placeholder='Minimum 30 characters'
 
                         onChange={e => setDesc(e.target.value)}
                         value={description}
@@ -142,8 +145,8 @@ function EditItemFormPage() {
                     </textarea>
                 </div>
 
-                <div>
-                    <button type="submit">Confirm Edits</button>
+                <div className="edit-detail">
+                    <button className='confirm-edit-item' type="submit">Confirm Edits</button>
                 </div>
             </form>
         </div>

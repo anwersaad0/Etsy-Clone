@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createItemThunk } from '../../store/items';
+import './CreateItemForm.css';
 
 
 function ItemFormPage() {
@@ -76,10 +77,10 @@ function ItemFormPage() {
     }, [name, price, description, itemImage]);
 
     return (
-        <div>
+        <div className='create-item-page'>
             <h1>Create an Item Listing</h1>
             {hasSubmitted && valErrs.length > 0 && (
-                <div>
+                <div className='error-text'>
                     <ul>
                         {valErrs?.map(err => (
                             <li key={err}>{err}</li>
@@ -89,8 +90,8 @@ function ItemFormPage() {
             )}
 
             <form onSubmit={(e) => handleSubmit(e)} className='new-item-form-details'>
-                <div>
-                    <div><label>Card Name</label></div>
+                <div className='create-detail'>
+                    <div className='label-div'><label>Card Name:</label></div>
                     <input 
                         type="text"
                         name="name"
@@ -101,9 +102,10 @@ function ItemFormPage() {
                     </input>
                 </div>
 
-                <div>
-                    <div><label>Card Image:</label></div>
+                <div className='create-detail'>
+                    <div className='label-div'><label>Card Image:</label></div>
                     <input
+                        className='img-input'
                         type='file'
                         name='image'
                         accept='image/*'
@@ -112,8 +114,8 @@ function ItemFormPage() {
                     ></input>
                 </div>
 
-                <div>
-                    <div><label>Card Price</label></div>
+                <div className='create-detail'>
+                    <div className='label-div'><label>Card Price:</label></div>
                     <input
                         type="number"
                         name="price"
@@ -126,13 +128,15 @@ function ItemFormPage() {
                     </input>
                 </div>
 
-                <div>
-                    <div><label>Description</label></div>
+                <div className='create-detail'>
+                    <div className='label-div'><label>Description:</label></div>
                     <textarea
+                        className='create-textarea'
                         type="text"
                         name="desc"
                         rows="8"
                         cols="40"
+                        placeholder='Minimum 30 characters'
 
                         onChange={e => setDesc(e.target.value)}
                         value={description}
@@ -141,8 +145,8 @@ function ItemFormPage() {
                     </textarea>
                 </div>
 
-                <div>
-                    <button type="submit">Create Listing</button>
+                <div className='create-detail'>
+                    <button className='confirm-create-item' type="submit">Create Listing</button>
                 </div>
             </form>
         </div>
