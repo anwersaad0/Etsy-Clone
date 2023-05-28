@@ -1,4 +1,4 @@
-.create-rev-div {
+.edit-rev-div {
     font-family: Arial, Helvetica, sans-serif;
     border-top: 4px solid transparent;
     border-bottom: 4px solid transparent;
@@ -10,7 +10,7 @@
     width: 370px;
 }
 
-.create-rev-errors {
+.edit-rev-errors {
     color: rgb(218, 179, 179);
 }
 
@@ -32,7 +32,7 @@
     color: orange;
 }
 
-.confirm-create-rev {
+.confirm-edit-rev {
     background-color: rgb(49, 67, 85);
 
     border: none;
@@ -47,10 +47,10 @@
     padding-top: 16px;
 }
 
-.confirm-create-rev:disabled {
+.confirm-edit-rev:disabled {
     color: lightgray;
 }
 
-.confirm-create-rev:hover {
+.confirm-edit-rev:hover {
     text-decoration: underline;
 }

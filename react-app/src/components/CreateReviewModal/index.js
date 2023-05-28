@@ -62,11 +62,11 @@ function CreateReviewModal({itemId}) {
     }, [revText]);
 
     return (
-        <div>
+        <div className="create-rev-div">
             <h1>Rate this Item</h1>
             {hasSubmitted && valErrs.length > 0 && (
                 <div>
-                    <ul>
+                    <ul className="create-rev-errors">
                         {valErrs?.map(err => (
                             <li key={err}>{err}</li>
                         ))}
@@ -81,7 +81,7 @@ function CreateReviewModal({itemId}) {
                         name="review-text"
                         rows="8"
                         cols="40"
-                        placeholder="Write your review here..."
+                        placeholder="Write your review here... (minimum 10 characters)"
 
                         value={revText}
                         onChange={e => setRevText(e.target.value)}
@@ -108,7 +108,7 @@ function CreateReviewModal({itemId}) {
                 </div>
 
                 <div>
-                    <button disabled={(!rating) ? true: false} type="submit">Submit Review</button>
+                    <button className="confirm-create-rev" disabled={(!rating) ? true: false} type="submit">Submit Review</button>
                 </div>
             </form>
         </div>

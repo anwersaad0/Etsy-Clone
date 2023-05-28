@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { editReviewThunk } from "../../store/reviews";
 import { getOneItemThunk } from "../../store/items";
+import './EditReviewModal.css';
 
 
 function ReviewEditModal({revId, rev}) {
@@ -64,11 +65,11 @@ function ReviewEditModal({revId, rev}) {
     }, [revText]);
 
     return (
-        <div>
+        <div className="edit-rev-div">
             <h1>Edit this Review</h1>
             {hasSubmitted && valErrs.length > 0 && (
                 <div>
-                    <ul>
+                    <ul className="edit-rev-errors">
                         {valErrs?.map(err => (
                             <li key={err}>{err}</li>
                         ))}
@@ -110,7 +111,7 @@ function ReviewEditModal({revId, rev}) {
                 </div>
 
                 <div>
-                    <button disabled={(!rating) ? true: false} type="submit">Resubmit Review</button>
+                    <button className="confirm-edit-rev" disabled={(!rating) ? true: false} type="submit">Resubmit Review</button>
                 </div>
             </form>
         </div>
