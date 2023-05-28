@@ -33,74 +33,71 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
+		<div className="signup-div">
 			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
+			<form className="signup-form" onSubmit={handleSubmit}>
+				<ul className="signup-errors">
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<label>
-					Email
+				<label className="signup-text">
 					<input
 						type="text"
+						placeholder="Email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
-					Username
+				<label className="signup-text">					
 					<input
 						type="text"
+						placeholder="Username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
 					/>
 				</label>
-
-				<label>
-					First Name
+				<label className="signup-text">
 					<input
 						type="text"
+						placeholder="First Name"
 						value={firstName}
 						onChange={(e) => setFirstName(e.target.value)}
 						required
 					/>
 				</label>
-
-				<label>
-					Last Name
+				<label className="signup-text">
 					<input
 						type="text"
+						placeholder="Last Name"
 						value={lastName}
 						onChange={(e) => setLastName(e.target.value)}
 						required
 					/>
 				</label>
-
-				<label>
-					Password
+				<label className="signup-text">
 					<input
 						type="password"
+						placeholder="Password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
-					Confirm Password
+				<label className="signup-text">		
 					<input
 						type="password"
+						placeholder="Confirm Password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				<button className="confirm-signup" type="submit">Sign Up</button>
 			</form>
-		</>
+		</ div>
 	);
 }
 
