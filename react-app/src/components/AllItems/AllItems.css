@@ -1,12 +1,25 @@
-.all-items-div {
-    display: grid;
-    grid-template-columns: repeat(2, 520px);
-
+.all-items-page {
+    display: flex;
+    flex-direction: column;
+    
     font-family: Arial, Helvetica, sans-serif;
     justify-content: center;
     align-items: center;
     max-width: 100%;
     padding: 12px 0px;
+}
+
+.all-items-div {
+    display: grid;
+    grid-template-columns: repeat(2, 520px);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.card-search {
+    min-width: 25%;
+    margin: 20px 0px;
 }
 
 .card-mini-details {
@@ -58,4 +71,8 @@
     background: linear-gradient(90deg, rgb(216, 202, 124) 10%, rgb(207, 105, 87));
     background-clip: text;
     color: transparent;
+}
+
+.search-text {
+    color: white;
 }
