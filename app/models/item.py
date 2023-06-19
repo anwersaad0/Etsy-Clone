@@ -20,6 +20,7 @@ class Item(db.Model):
 
     user = db.relationship('User', back_populates='items')
     reviews = db.relationship('Review', back_populates='item', cascade="all, delete-orphan")
+    carts = db.relationship('Cart', back_populates='items')
     #image = db.relationship('ItemImage', back_populates='item', cascade="all, delete-orphan")
 
     def avg_rating(self):
