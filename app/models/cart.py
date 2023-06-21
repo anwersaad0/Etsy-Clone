@@ -11,6 +11,7 @@ class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     user_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')))
+    
 
     user = db.relationship('User', back_populates='cart')
     items = db.relationship('Item', back_populates='carts')
