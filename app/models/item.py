@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .cart import carts
 #from models import User
 
 from sqlalchemy.schema import ForeignKey
@@ -20,7 +21,7 @@ class Item(db.Model):
 
     user = db.relationship('User', back_populates='items')
     reviews = db.relationship('Review', back_populates='item', cascade="all, delete-orphan")
-    carts = db.relationship('Cart', back_populates='items')
+    user_cart = db.relationship('User', secondary=carts, back_populates='item_cart')
 
     def avg_rating(self):
         sum = 0

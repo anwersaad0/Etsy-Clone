@@ -2,22 +2,12 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 from sqlalchemy.schema import ForeignKey
 
-class Cart(db.Model):
-    __tablename__ = "carts"
+carts = db.Table(
+    'item_cart',
+    db.Model.metadata,
+    db.Column('user_id', db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
+    db.Column('item_id', db.ForeignKey(add_prefix_for_prod('items.id')), primary_key=True)
+)
 
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
-
-    id = db.Column(db.Integer, primary_key=True)
-
-    user_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')))
-    
-
-    user = db.relationship('User', back_populates='cart')
-    items = db.relationship('Item', back_populates='carts')
-
-    def to_dict(self):
-        data = {
-            'id': self.id,
-            'userId': self.user_id
-        }
+if environment == "production":
+    carts.schema = SCHEMA

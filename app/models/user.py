@@ -2,6 +2,8 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+from .cart import carts
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -21,7 +23,7 @@ class User(db.Model, UserMixin):
 
     items = db.relationship('Item', back_populates='user', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates='user', cascade="all, delete-orphan")
-    cart = db.relationship('Cart', back_populates='user', cascade="all, delete-orphan")
+    item_cart = db.relationship('Item', secondary=carts, back_populates='user_cart', cascade="all, delete-orphan")
 
 
     @property
