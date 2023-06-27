@@ -1,9 +1,10 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from ..models import User, Item, Review, db
+from ..models import User, Item, Review, carts, db
 from ..forms import NewItem, EditItem, NewReview
 
 from ..api.aws_image_helpers import get_unique_image_filename, upload_file_to_s3
+from sqlalchemy import select
 
 item_routes = Blueprint('items', __name__)
 
@@ -38,6 +39,26 @@ def add_to_cart(id, user_id):
         return {'error': 'item not found'}
     
     user = User.query.get(user_id)
+    if not user:
+        return {'error': 'user not found'}
+    
+    query = select([carts]).where(
+        (carts.c.user_id == user_id) & (carts.c.item_id == id)
+    )
+
+    res = db.session.execute(query)
+
+    in_cart = res.fetchone() is not None
+
+    if in_cart:
+        item.user_cart.remove(user)
+        db.session.commit()
+        return item.to_dict()
+    else:
+        item.user_cart.append(user)
+        db.session.commit()
+        return item.to_dict()
+
 
 @item_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required

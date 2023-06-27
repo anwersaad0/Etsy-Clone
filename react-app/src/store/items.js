@@ -4,6 +4,7 @@ const GET_ONE_ITEM = "/GET_ONE_ITEM";
 const CREATE_ITEM = "/CREATE_ITEM";
 const EDIT_ITEM = "/EDIT_ITEM";
 const DELETE_ITEM = "/DELETE_ITEM";
+const ADD_REMOVE_CART = '/ADD_REMOVE_CART';
 
 //actions
 
@@ -46,6 +47,13 @@ const deleteItemAct = (itemId) => {
     return {
         type: DELETE_ITEM,
         itemId
+    }
+}
+
+const addOrRemoveFromCartAct = (item) => {
+    return {
+        type: ADD_REMOVE_CART,
+        item
     }
 }
 
