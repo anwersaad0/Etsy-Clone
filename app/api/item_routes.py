@@ -30,6 +30,15 @@ def item(id):
 
     return item.to_dict()
 
+@item_routes.route('<int:id>/cart/<int:user_id>', methods=['POST'])
+@login_required
+def add_to_cart(id, user_id):
+    item = Item.query.get(id)
+    if not item:
+        return {'error': 'item not found'}
+    
+    user = User.query.get(user_id)
+
 @item_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
 def add_item_review(id):
