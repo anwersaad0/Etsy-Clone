@@ -51,11 +51,11 @@ def add_to_cart(id, user_id):
     in_cart = res.fetchone() is not None
 
     if in_cart:
-        item.user_cart.remove(user)
+        user.item_cart.remove(item)
         db.session.commit()
         return item.to_dict()
     else:
-        item.user_cart.append(user)
+        user.item_cart.append(item)
         db.session.commit()
         return item.to_dict()
 

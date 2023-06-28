@@ -140,6 +140,19 @@ export const deleteItemThunk = (itemId) => async (dispatch) => {
     }
 }
 
+export const addOrRemoveFromCartThunk = (itemId, userId) => async (dispatch) => {
+    const res = await fetch(`/api/items/${itemId}/cart/${userId}`, {
+        method: 'POST',
+        body: itemId, userId
+    });
+
+    if (res.ok) {
+        const item = await res.json();
+        dispatch(addOrRemoveFromCartAct(item));
+        return item;
+    }
+}
+
 //reducer
 
 const initState = {};
@@ -173,6 +186,10 @@ function itemReducer(state = initState, action) {
         case DELETE_ITEM:
             newState = {...state};
             delete newState[action.itemId];
+            return newState;
+        case ADD_REMOVE_CART:
+            newState = {...state};
+            newState[action.item.id] = action.item;
             return newState;
         default:
             return state

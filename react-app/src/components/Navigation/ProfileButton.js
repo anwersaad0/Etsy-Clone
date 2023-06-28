@@ -57,6 +57,9 @@ function ProfileButton({ user }) {
             <li className="create-item-li">
               <NavLink className="create-item-link" to={'/items/new'}>Create Listing</NavLink>
             </li>
+            <li className="user-items-li">
+              <NavLink className="user-items-link" to={'/'}>My Cart</NavLink>
+            </li>
             <li className="nav-divider"></li>
             <li>
               <button className="logout-btn" onClick={handleLogout}>Log Out</button>
