@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getOneItemThunk } from "../../store/items";
 import { getOneUserThunk } from "../../store/users";
 import ItemReviews from "../ItemReviews";
+import CartComponent from "../CartComponent";
 import './ItemPage.css';
 
 
@@ -14,6 +15,7 @@ function ItemPage() {
 
     const item = useSelector((state) => state.items[itemId]);
     const user = useSelector((state) => state.users[item?.userId]);
+    const sessionUser = useSelector(state => state.session.user);
 
     useEffect(() => {
         dispatch(getOneItemThunk(itemId));
@@ -48,6 +50,7 @@ function ItemPage() {
                     <div className="item-price-div">
                         <p className="item-page-price">Price: ${item.price.toFixed(2)}</p>
                         <button onClick={() => alert("Feature coming soon.")} className="add-to-cart-btn">Add to Cart</button>
+                        <CartComponent item={item} sessionUser={sessionUser} />
                     </div>
 
                     <div>
