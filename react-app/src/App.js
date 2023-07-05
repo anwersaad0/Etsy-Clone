@@ -11,6 +11,7 @@ import ItemFormPage from "./components/CreateItemForm";
 import EditItemFormPage from "./components/EditItemForm";
 import UserItems from "./components/UserItems";
 import HomePage from "./components/HomePage";
+import UserCart from "./components/UserCart";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/carts/current">
+            <UserCart />
           </Route>
           <Route exact path="/items/new">
             <ItemFormPage />

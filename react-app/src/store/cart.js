@@ -22,7 +22,7 @@ function cartReducer(state = initState, action) {
     switch(action.type) {
         case GET_USER_CART:
             const userState = action.carts.reduce((userCarts, cart) => {
-                userCarts[cart.userId] = cart;
+                userCarts[cart.user_id] = cart;
                 return userCarts; 
             }, {});
             return {...userState};

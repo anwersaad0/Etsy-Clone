@@ -7,5 +7,7 @@ cart_routes = Blueprint('carts', __name__)
 @cart_routes.route('/current')
 @login_required
 def user_cart():
-    user_items = carts.query.filter(current_user.id)
-    return user_items
+
+
+    user_items = carts.query.filter(carts.user_id == current_user.id)
+    return {carts: [cart for cart in carts if cart.user_id == current_user.id]}
