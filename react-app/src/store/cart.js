@@ -22,11 +22,7 @@ function cartReducer(state = initState, action) {
     let newState;
     switch(action.type) {
         case GET_USER_CART:
-            newState = {...state, ...action.carts};
-            // const userState = action.carts.reduce( (userCarts, cart) => {
-            //     userCarts[cart.user_id] = cart;
-            // }, {});
-            // return userState;
+            newState = {...action.carts};
             return newState;
         default:
             return state;
