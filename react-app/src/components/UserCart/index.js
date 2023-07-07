@@ -8,18 +8,34 @@ function UserCart() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const sessionUser = useSelector(state => state.session.user);
+    const userCart = useSelector(state => Object.values(state.carts));
+
     useEffect(() => {
         dispatch(getUserCartThunk());
     }, [dispatch]);
 
-    const sessionUser = useSelector(state => state.session.user);
-    const userCart = useSelector(state => Object.values(state.carts));
+    console.log('user cart', userCart);
 
-    console.log(userCart);
+    if (!userCart || !userCart.length) {
+        return (
+            <div className="user-cart-div">
+                <h1 className="user-cart-title">{sessionUser.username}'s Cart</h1>
+                <h2>It seems your cart is empty</h2>
+            </div>
+        )
+    }
 
     return (
-        <div>
-
+        <div className="user-cart-div">
+            <h1 className="user-cart-title">{sessionUser.username}'s Cart</h1>
+            <div className="user-cart-items-div">
+                {userCart?.map(({itemId}) => (
+                    <div className="cart-item-div">
+                        <h2>{itemId}</h2>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

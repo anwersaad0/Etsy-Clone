@@ -45,3 +45,6 @@ class User(db.Model, UserMixin):
             'firstName': self.first_name,
             'lastName': self.last_name
         }
+    
+    def to_cart(self):
+        return [{'userId': self.id, 'itemId': item.id} for item in self.item_cart]

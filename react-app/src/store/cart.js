@@ -12,6 +12,7 @@ export const getUserCartThunk = () => async (dispatch) => {
 
     if (res.ok) {
         const userCart = await res.json();
+        //console.log('thunk', userCart);
         dispatch(getUserCartAct(userCart));
     }
 }
@@ -21,11 +22,12 @@ function cartReducer(state = initState, action) {
     let newState;
     switch(action.type) {
         case GET_USER_CART:
-            const userState = action.carts.reduce((userCarts, cart) => {
-                userCarts[cart.user_id] = cart;
-                return userCarts; 
-            }, {});
-            return {...userState};
+            newState = {...state, ...action.carts};
+            // const userState = action.carts.reduce( (userCarts, cart) => {
+            //     userCarts[cart.user_id] = cart;
+            // }, {});
+            // return userState;
+            return newState;
         default:
             return state;
     }

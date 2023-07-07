@@ -8,6 +8,6 @@ cart_routes = Blueprint('carts', __name__)
 @login_required
 def user_cart():
 
-
-    user_items = carts.query.filter(carts.user_id == current_user.id)
-    return {carts: [cart for cart in carts if cart.user_id == current_user.id]}
+    #print(">>> TESTING >>>", carts)
+    #user_items = carts.query.filter(carts.user_id == current_user.id)
+    return current_user.to_cart()
