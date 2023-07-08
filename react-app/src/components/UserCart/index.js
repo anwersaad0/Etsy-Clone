@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { getUserCartThunk } from "../../store/cart";
 import { useEffect } from "react";
+import './UserCart.css';
 
 function UserCart() {
     const dispatch = useDispatch();
@@ -15,7 +16,9 @@ function UserCart() {
         dispatch(getUserCartThunk());
     }, [dispatch]);
 
-    console.log('user cart', userCart);
+    const cartItems = [];
+
+    //console.log('user cart', userCart);
 
     if (!userCart || !userCart.length) {
         return (

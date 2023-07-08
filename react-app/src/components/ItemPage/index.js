@@ -49,7 +49,6 @@ function ItemPage() {
 
                     <div className="item-price-div">
                         <p className="item-page-price">Price: ${item.price.toFixed(2)}</p>
-                        <button onClick={() => alert("Feature coming soon.")} className="add-to-cart-btn">Add to Cart</button>
                         <CartComponent item={item} sessionUser={sessionUser} />
                     </div>
 
