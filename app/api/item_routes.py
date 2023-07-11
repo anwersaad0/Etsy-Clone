@@ -2,11 +2,16 @@ from flask import Blueprint, request
 from flask_login import current_user, login_required
 from ..models import User, Item, Review, carts, db
 from ..forms import NewItem, EditItem, NewReview
+# from ...app import app
 
 from ..api.aws_image_helpers import get_unique_image_filename, upload_file_to_s3
 from sqlalchemy import select
 
+from .convert_helper import IntListConverter
+
 item_routes = Blueprint('items', __name__)
+# app.url_map.converters['int_list'] = IntListConverter
+
 
 @item_routes.route('')
 def items():
@@ -18,6 +23,13 @@ def items():
 def user_items():
     items = Item.query.filter(Item.user_id == current_user.id)
     return {'items': [item.to_dict() for item in items]}
+
+# @item_routes.route('/<int_list:idList>')
+# @login_required
+# def several_items(idList):
+#     print('>>>> id List >>>>', idList)
+#     items = [Item.query.get(id) for id in idList]
+#     return {'items': [item.to_dict() for item in items]}
 
 @item_routes.route('/<int:id>/reviews')
 def item_reviews(id):

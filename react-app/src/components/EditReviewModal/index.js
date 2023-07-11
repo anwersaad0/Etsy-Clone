@@ -1,6 +1,6 @@
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useEffect, useState } from "react";
 import { editReviewThunk } from "../../store/reviews";
 import { getOneItemThunk } from "../../store/items";
@@ -9,7 +9,7 @@ import './EditReviewModal.css';
 
 function ReviewEditModal({revId, rev}) {
     const dispatch = useDispatch();
-    const history = useHistory();
+    //const history = useHistory();
 
     const {closeModal} = useModal();
 

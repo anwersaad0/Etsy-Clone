@@ -11,33 +11,40 @@ function CartComponent({item, sessionUser}) {
 
     const sessionUserCart = useSelector(state => Object.values(state.carts));
 
+    let isInCart = 0;
+    
+    function checkCart() {
+        for (let cartItem of sessionUserCart) {
+            if (cartItem.itemId === item.id) {
+                isInCart = 1;
+            }
+        }
+    }
+
     useEffect(() => {
         dispatch(getUserCartThunk());
     }, [dispatch]);
 
-    const handleCart = (e) => {
+    const handleCart = async (e) => {
         e.preventDefault();
 
         if (sessionUser) {
-            dispatch(addOrRemoveFromCartThunk(item.id, sessionUser.id));
-        }
+            await dispatch(addOrRemoveFromCartThunk(item.id, sessionUser.id));
 
-        if (isInCart > 0) {
-            isInCart = 0;
+            if (isInCart > 0) {
+                isInCart = 0;
+            }
+
+            history.push('/carts/current');
         }
     }
 
-    let isInCart = 0;
-    for (let cartItem of sessionUserCart) {
-        if (cartItem.itemId === item.id) {
-            isInCart = 1;
-        }
-    }
+    checkCart();
 
     return (
         <div className="add-to-cart-div">
             <button className="add-to-cart-btn" onClick={handleCart}>
-                {(isInCart) ? "Remove from Cart" : "Add to Cart"}
+                {(isInCart > 0) ? "Remove from Cart" : "Add to Cart"}
             </button>
         </div>
     )
