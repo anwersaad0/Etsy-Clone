@@ -50,9 +50,9 @@ function UserCart() {
         <div className="user-cart-div">
             <h1 className="user-cart-title">{sessionUser.username}'s Cart</h1>
             <div className="user-cart-items-div">
-                {userCart?.map(({itemId}) => (
-                    <div key={itemId} className="cart-item-div">
-                        <h2>{itemId}</h2>
+                {sortedItems?.map(({id}) => (
+                    <div key={id} className="cart-item-div">
+                        <h2>{id}</h2>
                     </div>
                 ))}
             </div>
