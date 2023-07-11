@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { getUserCartThunk } from "../../store/cart";
-import { getMultItemsThunk } from "../../store/items";
+import { getAllItemsThunk } from "../../store/items";
 import { useEffect } from "react";
 import './UserCart.css';
 
@@ -18,16 +18,24 @@ function UserCart() {
         cartItemIds.push(cart.itemId);
     }
 
-    const cartItems = useSelector(state => Object.values(state.items));
+    const items = useSelector(state => Object.values(state.items));
 
     useEffect(() => {
         dispatch(getUserCartThunk());
-        dispatch(getMultItemsThunk(cartItemIds));
+        dispatch(getAllItemsThunk());
     }, [dispatch]);
 
-    
+    let sortedItems = [];
 
-    //console.log('user cart', cartItems);
+    for (let item of items) {
+        for (let id of cartItemIds) {
+            if (id === item.id) {
+                sortedItems.push(item);
+            }
+        }
+    }
+    
+    console.log('user cart', sortedItems);
 
     if (!userCart || !userCart.length) {
         return (

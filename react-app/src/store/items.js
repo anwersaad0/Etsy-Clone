@@ -1,7 +1,7 @@
 const GET_ALL_ITEMS = "/GET_ALL_ITEMS";
 const GET_USER_ITEMS = "/GET_USER_ITEMS";
 const GET_ONE_ITEM = "/GET_ONE_ITEM";
-const GET_MULT_ITEMS = "/GET_MULT_ITEMS";
+//const GET_MULT_ITEMS = "/GET_MULT_ITEMS";
 const CREATE_ITEM = "/CREATE_ITEM";
 const EDIT_ITEM = "/EDIT_ITEM";
 const DELETE_ITEM = "/DELETE_ITEM";
@@ -30,12 +30,12 @@ const getOneItemAct = (item) => {
     }
 }
 
-const getMultItemsAct = (items) => {
-    return {
-        type: GET_MULT_ITEMS,
-        items
-    }
-}
+// const getMultItemsAct = (items) => {
+//     return {
+//         type: GET_MULT_ITEMS,
+//         items
+//     }
+// }
 
 const createItemAct = (item) => {
     return {
@@ -95,38 +95,27 @@ export const getOneItemThunk = (itemId) => async (dispatch) => {
     if (res.ok) {
         const item = await res.json();
         dispatch(getOneItemAct(item));
-        //console.log('from thunk', item);
         return item;
     } else {
         return ("getOneItem response not ok");
     }
 }
 
-export const getMultItemsThunk = (itemIds) => async (dispatch) => {
-    const items = [];
+// export const getMultItemsThunk = (itemIds) => async (dispatch) => {
+//     const items = [];
 
-    for (let itemId of itemIds) {
-        const res = await fetch(`/api/items/${itemId}`);
+//     for (let itemId of itemIds) {
+//         const res = await fetch(`/api/items/${itemId}`);
 
-        if (res.ok) {
-            const item = await res.json();
-            items.push(item);
-        }
-    }
+//         if (res.ok) {
+//             const item = await res.json();
+//             items.push(item);
+//         }
+//     }
 
-    dispatch(getMultItemsAct(items));
-    return items;
-
-    // const res = await fetch(`/api/items/${itemIds}`);
-
-    // if (res.ok) {
-    //     const items = await res.json();
-    //     dispatch(getMultItemsAct(items));
-    //     return items;
-    // } else {
-    //     return ("getMultItems response not ok");
-    // }
-}
+//     dispatch(getMultItemsAct(items));
+//     return items;
+// }
 
 export const createItemThunk = (item) => async (dispatch) => {
     const res = await fetch('/api/items/new', {
@@ -144,7 +133,6 @@ export const createItemThunk = (item) => async (dispatch) => {
 }
 
 export const editItemThunk = (item, itemId) => async (dispatch) => {
-    //const itemId = parseInt(item.get('id'));
     console.log('item id ', item);
 
     const res = await fetch(`/api/items/edit/${itemId}`, {
@@ -209,12 +197,12 @@ function itemReducer(state = initState, action) {
             newState = {...state};
             newState[action.item.id] = action.item;
             return newState;
-        case GET_MULT_ITEMS:
-            const multItemsState = action.items.reduce( (cartItems, item) => {
-                cartItems[item.id] = item;
-                return cartItems;
-            }, {});
-            return {...multItemsState};
+        // case GET_MULT_ITEMS:
+        //     const multItemsState = action.items.reduce( (cartItems, item) => {
+        //         cartItems[item.id] = item;
+        //         return cartItems;
+        //     }, {});
+        //     return {...multItemsState};
         case CREATE_ITEM:
             newState = {...state};
             newState[action.item.id] = action.item;
