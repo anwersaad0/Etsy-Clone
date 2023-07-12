@@ -59,5 +59,12 @@ flask seed all
 - Users can edit their own review(s) on a listing
 - Users can delete their review(s) on a listing
 
+### Search
+- Users can type into a search bar in the listings page to filter through specific listings
+
+### Cart
+- Users can create and delete items from their cart
+- Users can read/view their cart and what cards are in it
+
 ### AWS
 - Logged-in users can upload an image for their card listing
