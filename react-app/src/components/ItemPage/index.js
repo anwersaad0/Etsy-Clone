@@ -49,7 +49,7 @@ function ItemPage() {
 
                     <div className="item-price-div">
                         <p className="item-page-price">Price: ${item.price.toFixed(2)}</p>
-                        <CartComponent item={item} sessionUser={sessionUser} />
+                        {(item.userId === sessionUser.id) ? "" : (<CartComponent item={item} sessionUser={sessionUser} />)}
                     </div>
 
                     <div>
