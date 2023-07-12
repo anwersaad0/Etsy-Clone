@@ -35,7 +35,7 @@ function CartComponent({item, sessionUser}) {
                 isInCart = 0;
             }
 
-            history.push('/carts/current');
+            await history.push('/carts/current');
         }
     }
 
