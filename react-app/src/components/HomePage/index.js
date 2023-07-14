@@ -51,7 +51,10 @@ function HomePage() {
             </div>
 
             <footer>
-                <a className="contributor" href="https://github.com/anwersaad0">Made by Saad Anwer</a>
+                <a>Made by Saad Anwer | </a>
+                <a className="contributor" href="https://github.com/anwersaad0">GitHub</a>
+                <a> | </a>
+                <a className="contributor" href="https://www.linkedin.com/in/saad-anwer-01aab317a/">LinkedIn</a>
             </footer>
         </main>
     )
