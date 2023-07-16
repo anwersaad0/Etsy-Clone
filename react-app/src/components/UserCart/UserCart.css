@@ -85,3 +85,29 @@
 .total-price {
     font-size: 24px;
 }
+
+.cart-page-btn-div {
+    margin-left: -18px;
+}
+
+.cart-page-btn {
+    background-color: rgb(49, 67, 85);
+    height: 32px;
+
+    border: none;
+    border-right: 1px solid rgb(153, 153, 153);
+    border-left: 1px solid rgb(153, 153, 153);
+
+    color: white;
+    font-size: 16px;
+
+    margin-top: 0px;
+    margin-left: 16px;
+
+    padding: 0px 12px;
+}
+
+.cart-page-btn:hover {
+    background-color: rgb(61, 85, 109);
+    transition: 0.5s;
+}

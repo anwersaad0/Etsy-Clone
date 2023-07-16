@@ -4,6 +4,7 @@ import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom";
 import { getUserCartThunk } from "../../store/cart";
 import { getAllItemsThunk } from "../../store/items";
 import { useEffect } from "react";
+import CartComponent from "../CartComponent";
 import './UserCart.css';
 
 function UserCart() {
@@ -21,13 +22,12 @@ function UserCart() {
     }
 
     const items = useSelector(state => Object.values(state.items));
+    let sortedItems = [];
 
     useEffect(() => {
         dispatch(getUserCartThunk());
         dispatch(getAllItemsThunk());
     }, [dispatch]);
-
-    let sortedItems = [];
 
     for (let item of items) {
         for (let id of cartItemIds) {
@@ -56,14 +56,17 @@ function UserCart() {
         <div className="user-cart-div">
             <h1 className="user-cart-title">{sessionUser.username}'s Cart</h1>
             <div className="user-cart-items-div">
-                {sortedItems?.map(({id, name, price, image}) => (
-                    <div key={id} className="cart-item-div">
+                {sortedItems?.map((item) => (
+                    <div key={item?.id} className="cart-item-div">
                         <div className="cart-item-pic-div">
-                            <img className="cart-item-pic" src={image} alt={name}></img>
+                            <img className="cart-item-pic" src={item?.image} alt={item?.name}></img>
                         </div>
                         <div className="cart-item-text">
-                            <NavLink className="cart-item-name" exact to={`/items/${id}`}>{name}</NavLink>
-                            <p className="cart-item-price">Price: ${price.toFixed(2)}</p>
+                            <NavLink className="cart-item-name" exact to={`/items/${item?.id}`}>{item?.name}</NavLink>
+                            <p className="cart-item-price">Price: ${item?.price.toFixed(2)}</p>
+                            <div className="cart-page-btn-div">
+                                <CartComponent btnClass="cart-page-btn" item={item} sessionUser={sessionUser} />
+                            </div>
                         </div>
                     </div>
                 ))}

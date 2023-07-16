@@ -5,7 +5,7 @@ import { getUserCartThunk } from "../../store/cart";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-function CartComponent({item, sessionUser}) {
+function CartComponent({item, sessionUser, btnClass="add-to-cart-btn"}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -23,7 +23,7 @@ function CartComponent({item, sessionUser}) {
 
     useEffect(() => {
         dispatch(getUserCartThunk());
-    }, [dispatch]);
+    }, [dispatch, sessionUserCart]);
 
     const handleCart = async (e) => {
         e.preventDefault();
@@ -34,8 +34,6 @@ function CartComponent({item, sessionUser}) {
             if (isInCart > 0) {
                 isInCart = 0;
             }
-
-            await history.push('/carts/current');
         }
     }
 
@@ -43,7 +41,7 @@ function CartComponent({item, sessionUser}) {
 
     return (
         <div className="add-to-cart-div">
-            <button className="add-to-cart-btn" onClick={handleCart}>
+            <button className={btnClass} onClick={handleCart}>
                 {(isInCart > 0) ? "Remove from Cart" : "Add to Cart"}
             </button>
         </div>
