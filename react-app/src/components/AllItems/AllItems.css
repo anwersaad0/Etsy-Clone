@@ -86,4 +86,16 @@
         width: 123px;
         height: 175px;
     }
+
+    .card-mini-name {
+        font-size: 14px;
+    }
+
+    .card-mini-price {
+        font-size: 18px;
+    }
+
+    .card-mini-rating {
+        font-size: 18px;
+    }
 }
