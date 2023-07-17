@@ -80,3 +80,26 @@
 .delete-item-btn:hover, .edit-item-btn:hover {
     text-decoration: underline;
 }
+
+@media(max-width: 390px) {
+    .all-user-items-div {
+        grid-template-columns: repeat(1, 370px);
+    }
+
+    .card-mini-img-div {
+        width: 123px;
+        height: 175px;
+    }
+
+    .card-mini-name {
+        font-size: 14px;
+    }
+
+    .card-mini-price {
+        font-size: 18px;
+    }
+
+    .card-mini-rating {
+        font-size: 18px;
+    }
+}

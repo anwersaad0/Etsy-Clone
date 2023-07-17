@@ -192,3 +192,30 @@
 .edit-rev-btn:hover, .del-rev-btn:hover {
     text-decoration: underline;
 }
+
+@media(max-width: 390px) {
+    .item-desc-div {
+        max-width: 90%;
+    }
+
+    .item-page-details {
+        min-width: 80%;
+        flex-direction: column;
+    }
+
+    .item-page-img-div {
+        /* max-width: 336px;
+        max-height: 468px;
+        min-width: 336px;
+        min-height: 468px; */
+        width: 168px;
+        height: 234px;
+        /* margin: 8px;
+        margin: 18px 28px; */
+    }
+
+    .item-page-text {
+        border-left: none;
+        border-top: 4px solid rgb(163, 163, 163);
+    }
+}

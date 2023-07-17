@@ -111,3 +111,9 @@
     background-color: rgb(61, 85, 109);
     transition: 0.5s;
 }
+
+@media(max-width: 390px) {
+    .cart-item-div {
+        min-width: 340px;
+    }
+}
