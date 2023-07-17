@@ -76,3 +76,14 @@
 .search-text {
     color: white;
 }
+
+@media(max-width: 390px) {
+    .all-items-div {
+        grid-template-columns: repeat(1, 370px);
+    }
+
+    .card-mini-img-div {
+        width: 123px;
+        height: 175px;
+    }
+}
