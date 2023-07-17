@@ -46,7 +46,7 @@ function HomePage() {
             <div className="home-divider">
             </div>
 
-            <div>
+            <div className="home-desc-text-div">
                 <h3>Deck's Hobbies is an app where you can post and view card listings.</h3>
             </div>
 

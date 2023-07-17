@@ -139,3 +139,33 @@
   text-decoration: none;
   color: white;
 }
+
+@media(max-width: 390px) {
+  .nav-bar {
+    height: 38px;
+  }
+
+  .site-title {
+    font-size: 18px;
+  }
+
+  .fa-dice-d20 {
+    font-size: 18px;
+  }
+
+  .listings-link {
+    font-size: 12px;
+    height: 18px;
+  }
+
+  .profile-button {
+    font-size: 14px;
+    height: 18px;
+    width: 39px;
+    margin-right: 24px;
+  }
+
+  .listings-link, .profile-button {
+    margin-top: 4px;
+  }
+}
